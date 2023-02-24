@@ -8,15 +8,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Damage
+  - Dead
+  - Player
+  - Enemies
+  - Exit
+  - Pickable
   - 
   - 
   - 
