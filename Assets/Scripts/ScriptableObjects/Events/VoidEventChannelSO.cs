@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Events
 {
-    [CreateAssetMenu(fileName = "VoidEventChannel", 
+    [CreateAssetMenu(fileName = "Void Event Channel", 
                      menuName = "Events/Void Event Channel", 
                      order = 0)]
     public class VoidEventChannelSO : EventChannelSO
