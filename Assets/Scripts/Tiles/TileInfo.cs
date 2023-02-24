@@ -2,28 +2,26 @@ using UnityEngine;
 
 public enum TileType
 {
-    Snow, 
-    Ice, 
-    Ground, 
+    Snow,
+    Ice,
+    Ground,
     Grace,
     Stone,
+    Bushes,
     Water,
-    Bushes
 }
 
 public class TileInfo : MonoBehaviour
 {
     [SerializeField] private TileType _type;
-    
-    [Header("MOVEMENT")]
-    [SerializeField] private float _speedMultiplier = 1f;
+
+    [Header("MOVEMENT")] [SerializeField] private float _speedMultiplier = 1f;
     [SerializeField] private float _jumpMultiplier = 1f;
     [SerializeField] private float _buoyancyAcceleration = 0f;
-    
-    [Header("SOUND")]
-    [SerializeField] private AudioSource _stepSound;
-    [SerializeField] private AudioSource _landSound;
-    [SerializeField] private AudioSource _jumpSound;
+
+    [Header("SOUND")] [SerializeField] private AudioClip[] _stepSound;
+    [SerializeField] private AudioClip[] _landSound;
+    [SerializeField] private AudioClip[] _jumpSound;
 
     public TileType Type => _type;
 
@@ -33,9 +31,14 @@ public class TileInfo : MonoBehaviour
 
     public float BuoyancyAcceleration => _buoyancyAcceleration;
 
-    public AudioSource StepSound => _stepSound;
+    public AudioClip[] StepSound => _stepSound;
 
-    public AudioSource LandSound => _landSound;
+    public AudioClip[] LandSound => _landSound;
 
-    public AudioSource JumpSound => _jumpSound;
+    public AudioClip[] JumpSound => _jumpSound;
+
+    public static void PlaySound(AudioSource source, AudioClip[] sounds)
+    {
+        source.PlayOneShot(sounds[Random.Range(0, sounds.Length - 1)]);
+    }
 }
