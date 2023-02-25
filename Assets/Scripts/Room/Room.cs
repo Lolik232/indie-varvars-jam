@@ -5,8 +5,6 @@ using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
 
-[RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
 public class Room : MonoBehaviour
 {
     #region Props
@@ -38,28 +36,42 @@ public class Room : MonoBehaviour
 
     private void Awake()
     {
-        if (_enterCollider == null || _roomCollider == null || _outCollier == null)
+        if (_enterCollider == null ||
+            _roomCollider == null ||
+            _outCollier == null)
         {
             throw new NullReferenceException();
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.IsTouching(_roomCollider) == false && PlayerInRoom)
+        if (!PlayerInRoom) return;
+
+        if (other.IsTouching(_roomCollider) == false &&
+            PlayerInRoom &&
+            other.IsTouching(_outCollier) == false)
         {
             _outCollier.isTrigger = false;
             PlayerInRoom          = false;
+#if UNITY_EDITOR
+            Debug.Log("Player leave room");
+#endif
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (PlayerInRoom) return;
+
         if (other.IsTouching(_roomCollider) &&
-            _roomCollider.isTrigger == true)
+            !other.IsTouching(_enterCollider))
         {
             _enterCollider.isTrigger = false;
             PlayerInRoom             = true;
+#if UNITY_EDITOR
+            Debug.Log("Player in room");
+#endif
         }
     }
 }

@@ -2,13 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Events;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-
 
 namespace Game
 {
@@ -29,9 +24,6 @@ namespace Game
 
         private void Awake()
         {
-            Button btn;
-            btn.OnPointerExit();
-            
             if (_loadedRoomEventChannelSO == null)
             {
                 throw new ArgumentNullException($"Loaded room event channel is null");
