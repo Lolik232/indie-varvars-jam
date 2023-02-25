@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Activator))]
@@ -90,17 +92,23 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Unity
 
-    private Collider2D _collider;
-    private Rigidbody2D _rigidbody;
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private Collider2D _groundChecker;
+    [SerializeField] private Collider2D _ceilChecker;
+    [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private AudioSource _audioSource;
     private Transform _transform;
-    private AudioSource _audioSource;
+
 
     private void Awake()
     {
         _transform = transform;
-        _collider = GetComponent<Collider2D>();
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _audioSource = GetComponent<AudioSource>();
+        _environmentFilter = new ContactFilter2D
+        {
+            useTriggers = true,
+            useLayerMask = true,
+            layerMask = _waterFilter.layerMask | _groundFilter.layerMask | _bushesFilter.layerMask
+        };
     }
 
     private void Update()
@@ -109,10 +117,6 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
         GatherInput();
     }
-    
-    //TODO: nahui
-    private float _deltaTime = 0.5f;
-    private float _lastStepTime;
 
     private void FixedUpdate()
     {
@@ -120,22 +124,15 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
         Velocity = _rigidbody.velocity;
 
-        //TODO: Remove нахуй
-        if (Velocity.x != 0 && _colliderCached && _lastStepTime + _deltaTime < Time.time)
-        {
-            TileInfo.PlaySound(_audioSource, _cachedTileInfo.StepSound);
-            _lastStepTime = Time.time;
-        }
-        //END TODO:
-
         CheckCollisions();
+        CacheTileInfo();
 
         CalculateWalk();
         CalculateJumpApex();
         CalculateGravity();
         CalculateJump();
 
-        CheckTiles();
+
         MoveCharacter();
     }
 
@@ -143,21 +140,21 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Collisions
 
-    [Header("COLLISION")] [SerializeField] private LayerMask _groundLayer;
-    [SerializeField] private float _detectionRayLength = 0.1f;
-    [SerializeField] private float _rectBuffer = 0.05f;
+    [Header("COLLISION")] [SerializeField] private ContactFilter2D _groundFilter;
+    [SerializeField] private ContactFilter2D _ceilFilter;
+    [SerializeField] private ContactFilter2D _waterFilter;
+    [SerializeField] private ContactFilter2D _bushesFilter;
 
-    private Rect _rectDown, _rectUp;
+    private ContactFilter2D _environmentFilter;
+
     private bool _collisionDown, _collisionUp;
 
     private float _timeLeftGrounded;
 
     private void CheckCollisions()
     {
-        CalculateRays();
-
         LandingThisFrame = false;
-        var groundedCheck = RunDetection(_rectDown);
+        var groundedCheck = _groundChecker.IsTouchingLayers(_groundFilter.layerMask);
 
         if (_collisionDown & !groundedCheck) _timeLeftGrounded = Time.time;
         else if (!_collisionDown && groundedCheck)
@@ -169,71 +166,57 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         }
 
         _collisionDown = groundedCheck;
-        _collisionUp = RunDetection(_rectUp);
-
-        bool RunDetection(Rect rect)
-        {
-            return Physics2D.OverlapBox(rect.center, rect.size, 0, _groundLayer);
-        }
-    }
-
-    private void CalculateRays()
-    {
-        var b = _collider.bounds;
-        _rectDown = new Rect(b.min.x + _rectBuffer / 2, b.min.y - _detectionRayLength + _rectBuffer,
-            b.size.x - _rectBuffer, _detectionRayLength);
-        _rectUp = new Rect(b.min.x + _rectBuffer / 2, b.max.y - _rectBuffer,
-            b.size.x - _rectBuffer, _detectionRayLength);
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (!Application.isPlaying) return;
-
-        Gizmos.color = Color.yellow;
-        var bounds = _collider.bounds;
-
-        Gizmos.DrawWireCube(_rectDown.center, _rectDown.size);
-        Gizmos.DrawWireCube(_rectUp.center, _rectUp.size);
-
-        Gizmos.color = Color.red;
-        var move = new Vector3(_currentXSpeed, _currentYSpeed) * Time.fixedDeltaTime;
-        Gizmos.DrawWireCube(bounds.center + move, bounds.size);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(bounds.center, new Vector2(bounds.center.x, bounds.min.y - _tileCheckingRayLenght));
+        _collisionUp = _ceilChecker.IsTouchingLayers(_groundFilter.layerMask);
     }
 
     #endregion
 
     #region TileInfo
 
-    [Header("TILE INFO")] [SerializeField] private float _tileCheckingRayLenght = 0.1f;
-    private Collider2D _cachedTileCollider;
-    private TileInfo _cachedTileInfo;
-    private bool _colliderCached;
+    public CachedTile _cachedTile;
+    private bool _cachedTileThisFrame;
 
-    private readonly RaycastHit2D[] _hitsBuffer = new RaycastHit2D[4];
+    private float TileSpeedMultiplier => _cachedTile.SpeedMultiplier;
+    private float TileAccelerationMultiplier => _cachedTile.AccelerationMultiplier;
+    private float TileDecelerationMultiplier => _cachedTile.DecelerationMultiplier;
+    private float TileJumpMultiplier => _cachedTile.JumpMultiplier;
+    private float TileBuoyancySpeedAddon => _cachedTile.BuoyancySpeedAddon;
 
-    private void CheckTiles()
+    private readonly Collider2D[] _colliderBuffer = new Collider2D[8];
+
+    private void CacheTileInfo()
     {
-        var bounds = _collider.bounds;
-        var size = Physics2D.LinecastNonAlloc(bounds.center, new Vector2(bounds.center.x, bounds.min.y - _tileCheckingRayLenght), _hitsBuffer, _groundLayer);
-        _colliderCached = false;
-        for (var i = 0; i < size; i++)
+        int count = _groundChecker.GetContacts(_environmentFilter, _colliderBuffer);
+        
+        _cachedTileThisFrame = false;
+        for (int i = 0; i < count; i++)
         {
-            var currentTileCollider = _hitsBuffer[i].collider;
-            if (currentTileCollider == _cachedTileCollider)
+            switch (_cachedTileThisFrame)
             {
-                _colliderCached = true;
-                continue;
+                case false when _cachedTile.Collider == _colliderBuffer[i]:
+                    _cachedTileThisFrame = true;
+                    break;
+                case false when _cachedTile.Collider != _colliderBuffer[i]:
+                case true when
+                    GetComponentLayerPriority(_colliderBuffer[i]) < GetComponentLayerPriority(_cachedTile.Collider):
+                    _cachedTile.Collider = _colliderBuffer[i];
+                    _cachedTileThisFrame = _colliderBuffer[i].TryGetComponent(out _cachedTile.Info);
+                    break;
             }
-
-            if (!currentTileCollider.TryGetComponent(out _cachedTileInfo)) continue;
-            
-            _cachedTileCollider = currentTileCollider;
-            _colliderCached = true;
         }
+
+        _cachedTile.Cached = _cachedTileThisFrame;
+        _cachedTile.UpdateInfo();
+    }
+
+    private int GetComponentLayerPriority(Component component)
+    {
+        var layer = component.gameObject.layer;
+        if (layer == _waterFilter.layerMask) return 0;
+        if (layer == _bushesFilter.layerMask) return 1;
+        if (layer == _groundFilter.layerMask) return 2;
+
+        return 3;
     }
 
     #endregion
@@ -244,6 +227,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [SerializeField] private float _minFallSpeed = 80f;
     [SerializeField] private float _maxFallSpeed = 120f;
     private float _fallSpeed;
+    private float FallSpeed => _fallSpeed - TileBuoyancySpeedAddon;
 
     private void CalculateGravity()
     {
@@ -254,8 +238,8 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         }
 
         var fallSpeed = _endedJumpEarly && _currentYSpeed > 0
-            ? _fallSpeed * _jumpEndEarlyGravityModifier
-            : _fallSpeed;
+            ? FallSpeed * _jumpEndEarlyGravityModifier
+            : FallSpeed;
 
         _currentYSpeed -= fallSpeed * Time.fixedDeltaTime;
 
@@ -269,29 +253,31 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [Header("WALKING")] [SerializeField] private float _groundedAcceleration = 50f;
     [SerializeField] private float _groundedMoveClamp = 4;
     [SerializeField] private float _groundedDeceleration = 30f;
-    [SerializeField] private float _apexBonus = 2;
 
     [Header("FLYING")] [SerializeField] private float _inAirAcceleration = 90f;
     [SerializeField] private float _inAirMoveClamp = 13;
     [SerializeField] private float _inAirDeceleration = 60f;
+    [SerializeField] private float _apexBonus = 2;
 
-    private float Acceleration => Grounded ? _groundedAcceleration : _inAirAcceleration;
-    private float Deceleration => Grounded ? _groundedDeceleration : _inAirDeceleration;
+    private float Acceleration => Grounded ? _groundedAcceleration * TileAccelerationMultiplier : _inAirAcceleration;
+    private float Deceleration => Grounded ? _groundedDeceleration * TileDecelerationMultiplier : _inAirDeceleration;
     private float MoveClamp => Grounded ? _groundedMoveClamp : _inAirMoveClamp;
 
     private void CalculateWalk()
     {
-        if (Input.X != 0)
+        if (Input.X != 0 && (Input.X > 0 == _currentXSpeed > 0 || _currentXSpeed == 0))
         {
             _currentXSpeed += Input.X * Acceleration * Time.fixedDeltaTime;
             _currentXSpeed = Mathf.Clamp(_currentXSpeed, -MoveClamp, MoveClamp);
 
             var apexBonus = Mathf.Sign(Input.X) * _apexBonus * _apexPoint;
             _currentXSpeed += apexBonus * Time.fixedDeltaTime;
+            _currentXSpeed *= TileSpeedMultiplier;
         }
         else
         {
-            _currentXSpeed = Mathf.MoveTowards(_currentXSpeed, 0, Deceleration * Time.fixedDeltaTime);
+            _currentXSpeed = Mathf.MoveTowards(_currentXSpeed, 0,
+                Deceleration + (Input.X == 0 ? 0 : Acceleration) * Time.fixedDeltaTime);
         }
     }
 
@@ -337,7 +323,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     {
         if (Input.JumpDown && (CanUseCoyote || CanJumpInAir) || HasBufferedJump)
         {
-            _currentYSpeed = _jumpHeight * (_colliderCached ? _cachedTileInfo.JumpMultiplier : 1);
+            _currentYSpeed = _jumpHeight * TileJumpMultiplier;
             _endedJumpEarly = false;
             _coyoteUsable = false;
             _timeLeftGrounded = float.MinValue;
@@ -366,8 +352,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void MoveCharacter()
     {
-        RawMovement = new Vector3(_currentXSpeed * (_colliderCached ? _cachedTileInfo.SpeedMultiplier : 1),
-            _currentYSpeed);
+        RawMovement = new Vector3(_currentXSpeed, _currentYSpeed);
         _rigidbody.velocity = RawMovement;
     }
 
@@ -383,4 +368,42 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     }
 
     #endregion
+}
+
+[Serializable]
+public struct CachedTile
+{
+    public Collider2D Collider;
+    public float SpeedMultiplier;
+    public float AccelerationMultiplier;
+    public float DecelerationMultiplier;
+    public float JumpMultiplier;
+    public float BuoyancySpeedAddon;
+    public bool Cached;
+
+    public TileInfo Info;
+
+    public void UpdateInfo()
+    {
+        if (Cached)
+        {
+            SpeedMultiplier = Info.SpeedMultiplier;
+            AccelerationMultiplier = Info.AccelerationMultiplier;
+            DecelerationMultiplier = Info.DecelerationMultiplier;
+            JumpMultiplier = Info.JumpMultiplier;
+            BuoyancySpeedAddon = Info.BuoyancySpeedAddon;
+        }
+        else
+        {
+            SpeedMultiplier = 1f;
+            AccelerationMultiplier = 1f;
+            DecelerationMultiplier = 1f;
+            JumpMultiplier = 1f;
+            BuoyancySpeedAddon = 0f;
+        }
+    }
+
+    public void PlayStepSound(AudioSource source) => Info.PlayStepSound(source);
+    public void PlayLandSound(AudioSource source) => Info.PlayLandSound(source);
+    public void PlayJumpSound(AudioSource source) => Info.PlayJumpSound(source);
 }

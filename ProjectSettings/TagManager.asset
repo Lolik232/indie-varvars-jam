@@ -44,14 +44,14 @@ TagManager:
   - name: Platforms
     uniqueID: 454983365
     locked: 0
+  - name: Player
+    uniqueID: 3746368775
+    locked: 0
   - name: Environment
     uniqueID: 4056866289
     locked: 0
   - name: Enemies
     uniqueID: 1789647395
-    locked: 0
-  - name: Player
-    uniqueID: 3746368775
     locked: 0
   - name: Foreground
     uniqueID: 2481074205
