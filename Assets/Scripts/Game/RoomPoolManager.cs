@@ -2,43 +2,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using Events;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+
 
 namespace Game
 {
-    public class RoomPoolManager : MonoBehaviour
+    public class RoomPoolManager : Singleton<RoomPoolManager>
     {
         public  UnityEvent<Action> RoomUnloaded;
         private RoomSelector       _roomSelector;
 
-
         [Header("Channels")]
         [SerializeField] private GameObjectEventChannelSO _loadedRoomEventChannelSO;
 
-
         //TODO: int -> Room
         private LinkedList<Room> _loadedRooms;
+        private Queue<Room>      _roomsToRemove;
 
         [Header("Settings")]
         [SerializeField] private int _maxLoadedRooms = 5;
 
         private void Awake()
         {
+            Button btn;
+            btn.OnPointerExit();
+            
             if (_loadedRoomEventChannelSO == null)
             {
                 throw new ArgumentNullException($"Loaded room event channel is null");
             }
-        }
-
-        private void OnEnable()
-        {
-            _loadedRoomEventChannelSO.OnEventRaised += NewRoom;
-        }
-
-        private void OnDisable()
-        {
-            _loadedRoomEventChannelSO.OnEventRaised -= NewRoom;
         }
 
         private void Update()
@@ -52,29 +49,47 @@ namespace Game
 
         private IEnumerator UnloadFirstRoom()
         {
-            var roomToUnload = _loadedRooms.First.Value;
+            if (_roomsToRemove.Count < 2)
+            {
+                return null;
+            }
+
+            var roomToUnload = _roomsToRemove.Dequeue();
 
             _loadedRooms.RemoveFirst();
             roomToUnload.gameObject.SetActive(false);
 
             Destroy(roomToUnload, 0.2f);
-
+            
             return null;
         }
+        
 
         private IEnumerator LoadLastRoom()
         {
             var room = _roomSelector.GenerateRoom(_loadedRooms.Last.Value);
 
-            var instantiatePosition = _loadedRooms.Last.Value.EndRoomPoint;
-            
-            
-            Instantiate(room, _loadedRooms.Last.Value.);
+            var instantiatePosition = _loadedRooms.Last.Value.EndRoomPoint.position;
+            instantiatePosition -= room.EndRoomPoint.position;
+
+
+            var obj = Instantiate(room, instantiatePosition, new Quaternion());
+            if (obj == null)
+            {
+                Debug.Log("Cracked... Room was not instantiated");
+                throw new ArgumentNullException($"Room was not instantiated");
+            }
+
+            NewRoom(obj);
+
+            return null;
         }
 
         private void NewRoom(Room newRoom)
         {
             _loadedRooms.AddLast(newRoom);
+            _roomsToRemove.Enqueue(_loadedRooms.First.Value);
+            _loadedRooms.RemoveFirst();
         }
     }
 }
