@@ -203,7 +203,9 @@ MonoBehaviour:
   _jumpMultiplier: 1
   buoyancySpeedAddon: 0
   _stepSound:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: ddf8026796b38ec439336c8750c95cfb, type: 3}
+  - {fileID: 8300000, guid: 3d64cd9d254613f43a0dddaac3234f6c, type: 3}
+  - {fileID: 8300000, guid: 432bf72f8cff6364381bf47076c7235c, type: 3}
   _landSound:
   - {fileID: 0}
   _jumpSound:

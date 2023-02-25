@@ -29,24 +29,18 @@ public class TileInfo : MonoBehaviour
 
     public float BuoyancySpeedAddon => buoyancySpeedAddon;
 
-    public void PlayStepSound(AudioSource source)
+    public AudioClip GetStepSound()
     {
-        PlaySound(source, _stepSound);
+        return _stepSound.Length == 0 ? null : _stepSound[Random.Range(0, _stepSound.Length - 1)];
     }
 
-    public void PlayLandSound(AudioSource source)
+    public AudioClip GetJumpSound()
     {
-        PlaySound(source, _landSound);
+        return _jumpSound.Length == 0 ? null : _jumpSound[Random.Range(0, _jumpSound.Length - 1)];
     }
-
-    public void PlayJumpSound(AudioSource source)
+    
+    public AudioClip GetLandSound()
     {
-        PlaySound(source, _jumpSound);
-    }
-
-    private static void PlaySound(AudioSource source, AudioClip[] sounds)
-    {
-        if (sounds.Length == 0) return;
-        source.PlayOneShot(sounds[Random.Range(0, sounds.Length - 1)]);
+        return _landSound.Length == 0 ? null : _landSound[Random.Range(0, _landSound.Length - 1)];
     }
 }

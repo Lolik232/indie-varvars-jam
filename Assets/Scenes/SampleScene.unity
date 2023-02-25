@@ -9102,7 +9102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8111130884509322449, guid: 59ab3a90a727e4f4d8490a6e8f9b08ce, type: 3}
       propertyPath: buoyancySpeedAddon
-      value: 100
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 8111130884509322449, guid: 59ab3a90a727e4f4d8490a6e8f9b08ce, type: 3}
       propertyPath: _buoyancyAcceleration
@@ -9182,6 +9182,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4264375012884669588, guid: aa133aa9d2e7c2c46a732e9ff8e67299, type: 3}
+      propertyPath: m_Pitch
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264375012884669588, guid: aa133aa9d2e7c2c46a732e9ff8e67299, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4264375012884669596, guid: aa133aa9d2e7c2c46a732e9ff8e67299, type: 3}
       propertyPath: m_Name
       value: Player

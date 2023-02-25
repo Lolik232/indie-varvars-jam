@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Activator))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 {
@@ -95,17 +94,16 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     [SerializeField] private Collider2D _collider;
     [SerializeField] private Collider2D _groundChecker;
+    [SerializeField] private Collider2D _leftWallChecker;
+    [SerializeField] private Collider2D _rightWallChecker;
     [SerializeField] private Collider2D _ceilChecker;
     [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    private Transform _transform;
 
 
     private void Awake()
     {
-        _transform = transform;
         _environmentFilter = new ContactFilter2D
         {
             useTriggers = true,
@@ -119,10 +117,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         if (!_activated) return;
 
         GatherInput();
-
-        _facingLeft = Input.X < 0 || Input.X == 0 && _facingLeft;
-        _spriteRenderer.flipX = _facingLeft;
-        _animator.SetBool(Move, Input.X != 0 && Grounded);
+        UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -130,6 +125,8 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         if (!_activated) return;
 
         Velocity = _rigidbody.velocity;
+        _currentXSpeed = Velocity.x;
+        _currentYSpeed = Velocity.y;
 
         CheckCollisions();
         CacheTileInfo();
@@ -154,7 +151,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private ContactFilter2D _environmentFilter;
 
-    private bool _collisionDown, _collisionUp;
+    private bool _collisionDown, _collisionUp, _collisionLeft, _collisionRight;
 
     private float _timeLeftGrounded;
 
@@ -163,24 +160,30 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         LandingThisFrame = false;
         var groundedCheck = _groundChecker.IsTouchingLayers(_groundFilter.layerMask);
 
-        if (_collisionDown & !groundedCheck) _timeLeftGrounded = Time.time;
+        if (_collisionDown & !groundedCheck)
+        {
+            _timeLeftGrounded = Time.time;
+        }
         else if (!_collisionDown && groundedCheck)
         {
             _coyoteUsable = true;
             LandingThisFrame = true;
+            PlayLandSound();
 
             RestoreJumps();
         }
 
         _collisionDown = groundedCheck;
         _collisionUp = _ceilChecker.IsTouchingLayers(_groundFilter.layerMask);
+        _collisionLeft = _leftWallChecker.IsTouchingLayers(_groundFilter.layerMask);
+        _collisionRight = _rightWallChecker.IsTouchingLayers(_groundFilter.layerMask);
     }
 
     #endregion
 
     #region TileInfo
 
-    public CachedTile _cachedTile;
+    private CachedTile _cachedTile;
     private bool _cachedTileThisFrame;
 
     private float TileSpeedMultiplier => _cachedTile.SpeedMultiplier;
@@ -238,11 +241,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void CalculateGravity()
     {
-        if (_collisionDown)
-        {
-            if (_currentYSpeed < 0) _currentYSpeed = 0;
-            return;
-        }
+        if (_collisionDown) return;
 
         var fallSpeed = _endedJumpEarly && _currentYSpeed > 0
             ? FallSpeed * _jumpEndEarlyGravityModifier
@@ -251,6 +250,8 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         _currentYSpeed -= fallSpeed * Time.fixedDeltaTime;
 
         if (_currentYSpeed < _fallClamp) _currentYSpeed = _fallClamp;
+
+        if (_collisionUp && _currentYSpeed > 0) _currentYSpeed = 0;
     }
 
     #endregion
@@ -328,8 +329,9 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void CalculateJump()
     {
-        if (Input.JumpDown && (CanUseCoyote || CanJumpInAir) || HasBufferedJump)
+        if (Input.JumpDown && !_collisionUp && (CanUseCoyote || CanJumpInAir) || HasBufferedJump)
         {
+            PlayJumpSound();
             _currentYSpeed = _jumpHeight * TileJumpMultiplier;
             _endedJumpEarly = false;
             _coyoteUsable = false;
@@ -378,9 +380,48 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Animation
 
-    private static readonly int Move = Animator.StringToHash("move");
+    private static readonly int XVelocityAnimFloat = Animator.StringToHash("xVelocity");
+    private static readonly int YVelocityAnimFloat = Animator.StringToHash("yVelocity");
+    private static readonly int GroundedAnimBool = Animator.StringToHash("grounded");
 
     private bool _facingLeft;
+
+    private void UpdateAnimation()
+    {
+        _facingLeft = Input.X < 0 || Input.X == 0 && _facingLeft;
+        _spriteRenderer.flipX = _facingLeft;
+
+        _animator.SetFloat(XVelocityAnimFloat, Mathf.Abs(Velocity.x));
+        _animator.SetFloat(YVelocityAnimFloat, Velocity.y);
+        _animator.SetBool(GroundedAnimBool, Grounded);
+    }
+
+    public void PlayStepSound()
+    {
+        var clip = _cachedTile.GetStepSound();
+        if (clip != null)
+        {
+            CoroutineManager.StartRoutine(AudioManager.PlaySound(clip));
+        }
+    }
+
+    public void PlayJumpSound()
+    {
+        var clip = _cachedTile.GetJumpSound();
+        if (clip != null)
+        {
+            CoroutineManager.StartRoutine(AudioManager.PlaySound(clip));
+        }
+    }
+
+    public void PlayLandSound()
+    {
+        var clip = _cachedTile.GetLandSound();
+        if (clip != null)
+        {
+            CoroutineManager.StartRoutine(AudioManager.PlaySound(clip));
+        }
+    }
 
     #endregion
 }
@@ -418,7 +459,18 @@ public struct CachedTile
         }
     }
 
-    public void PlayStepSound(AudioSource source) => Info.PlayStepSound(source);
-    public void PlayLandSound(AudioSource source) => Info.PlayLandSound(source);
-    public void PlayJumpSound(AudioSource source) => Info.PlayJumpSound(source);
+    public AudioClip GetStepSound()
+    {
+        return Info == null ? null : Info.GetStepSound();
+    }
+
+    public AudioClip GetJumpSound()
+    {
+        return Info == null ? null : Info.GetJumpSound();
+    }
+
+    public AudioClip GetLandSound()
+    {
+        return Info == null ? null : Info.GetLandSound();
+    }
 }
