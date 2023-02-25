@@ -33,6 +33,8 @@ public class Room : MonoBehaviour
 
     private bool PlayerInRoom { get; set; } = false;
 
+    public Transform StartRoomPoint => _startRoomPoint;
+    public Transform EndRoomPoint   => _endRoomPoint;
 
     private void Awake()
     {
