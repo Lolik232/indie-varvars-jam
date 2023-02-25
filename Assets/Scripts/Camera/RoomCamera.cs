@@ -2,7 +2,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace Camera
+namespace CameraSupport
 {
     [RequireComponent(typeof(Collider2D),
                       typeof(Rigidbody2D))]
