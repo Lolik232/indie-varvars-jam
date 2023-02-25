@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
@@ -10,7 +13,9 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 {
-    private float _currentXSpeed, _currentYSpeed;
+    // private float _currentXSpeed, _currentYSpeed;
+
+    private float _currentXSpeed;
 
     #region Input
 
@@ -104,12 +109,29 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void Awake()
     {
+        _dashTimer = new Timer(_dashTime);
         _environmentFilter = new ContactFilter2D
         {
             useTriggers = true,
             useLayerMask = true,
             layerMask = _waterFilter.layerMask | _groundFilter.layerMask | _bushesFilter.layerMask
         };
+        _pool = new ObjectPool<SpriteRenderer>(
+            () => Instantiate(_spriteRendererPrefab),
+            source =>
+            {
+                source.gameObject.SetActive(true);
+                
+            },
+            source => { source.gameObject.SetActive(false); },
+            source => { Destroy(source.gameObject); },
+            false, 5, 15
+        );
+    }
+
+    private void Start()
+    {
+        _baseGravity = _rigidbody.gravityScale;
     }
 
     private void Update()
@@ -125,16 +147,21 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         if (!_activated) return;
 
         Velocity = _rigidbody.velocity;
-        _currentXSpeed = Velocity.x;
-        _currentYSpeed = Velocity.y;
+        // _currentXSpeed = Velocity.x;
+        // _currentYSpeed = Velocity.y;
 
         CheckCollisions();
-        CacheTileInfo();
+        TryCacheTileInfo(_groundChecker, _environmentFilter);
 
-        CalculateWalk();
-        CalculateJumpApex();
-        CalculateGravity();
-        CalculateJump();
+        CalculateDash();
+
+        if (!_dashedThisFrame)
+        {
+            CalculateWalk();
+            CalculateJumpApex();
+            CalculateGravity();
+            CalculateJump();
+        }
 
 
         MoveCharacter();
@@ -169,11 +196,9 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
             _coyoteUsable = true;
             LandingThisFrame = true;
             PlayLandSound();
-
-            RestoreJumps();
         }
 
-        _collisionDown = groundedCheck;
+        if (_collisionDown = groundedCheck) RestoreJumps();
         _collisionUp = _ceilChecker.IsTouchingLayers(_groundFilter.layerMask);
         _collisionLeft = _leftWallChecker.IsTouchingLayers(_groundFilter.layerMask);
         _collisionRight = _rightWallChecker.IsTouchingLayers(_groundFilter.layerMask);
@@ -190,13 +215,13 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     private float TileAccelerationMultiplier => _cachedTile.AccelerationMultiplier;
     private float TileDecelerationMultiplier => _cachedTile.DecelerationMultiplier;
     private float TileJumpMultiplier => _cachedTile.JumpMultiplier;
-    private float TileBuoyancySpeedAddon => _cachedTile.BuoyancySpeedAddon;
+    private float TileBuoyancyAcceleration => _cachedTile.BuoyancyAcceleration;
 
     private readonly Collider2D[] _colliderBuffer = new Collider2D[8];
 
-    private void CacheTileInfo()
+    private bool TryCacheTileInfo(Collider2D checker, ContactFilter2D filter)
     {
-        int count = _groundChecker.GetContacts(_environmentFilter, _colliderBuffer);
+        var count = checker.OverlapCollider(filter, _colliderBuffer);
 
         _cachedTileThisFrame = false;
         for (int i = 0; i < count; i++)
@@ -217,6 +242,8 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
         _cachedTile.Cached = _cachedTileThisFrame;
         _cachedTile.UpdateInfo();
+
+        return _cachedTileThisFrame;
     }
 
     private int GetComponentLayerPriority(Component component)
@@ -233,25 +260,19 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Gravity
 
-    [Header("GRAVITY")] [SerializeField] private float _fallClamp = -40f;
-    [SerializeField] private float _minFallSpeed = 80f;
-    [SerializeField] private float _maxFallSpeed = 120f;
-    private float _fallSpeed;
-    private float FallSpeed => _fallSpeed - TileBuoyancySpeedAddon;
+    [Header("GRAVITY")] [SerializeField] private float _failClamp = -40f;
+
+    private float _baseGravity;
 
     private void CalculateGravity()
     {
-        if (_collisionDown) return;
+        SetGravity(_baseGravity - TileBuoyancyAcceleration);
 
-        var fallSpeed = _endedJumpEarly && _currentYSpeed > 0
-            ? FallSpeed * _jumpEndEarlyGravityModifier
-            : FallSpeed;
+        if (Grounded) return;
 
-        _currentYSpeed -= fallSpeed * Time.fixedDeltaTime;
+        if (CurrentYVelocity < _failClamp) SetYVelocity(_failClamp);
 
-        if (_currentYSpeed < _fallClamp) _currentYSpeed = _fallClamp;
-
-        if (_collisionUp && _currentYSpeed > 0) _currentYSpeed = 0;
+        if (_endedJumpEarly && CurrentYVelocity > 0) SetYVelocity(CurrentYVelocity / _jumpEndEarlyGravityModifier);
     }
 
     #endregion
@@ -270,23 +291,81 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     private float Acceleration => Grounded ? _groundedAcceleration * TileAccelerationMultiplier : _inAirAcceleration;
     private float Deceleration => Grounded ? _groundedDeceleration * TileDecelerationMultiplier : _inAirDeceleration;
     private float MoveClamp => Grounded ? _groundedMoveClamp : _inAirMoveClamp;
+    private bool Staying => Mathf.Abs(CurrentXVelocity) < 0.1f;
 
     private void CalculateWalk()
     {
-        if (Input.X != 0 && (Input.X > 0 == _currentXSpeed > 0 || _currentXSpeed == 0))
+        if (Input.X != 0 && (Input.X > 0 == CurrentXVelocity > 0 || Staying))
         {
-            _currentXSpeed += Input.X * Acceleration * Time.fixedDeltaTime;
-            _currentXSpeed = Mathf.Clamp(_currentXSpeed, -MoveClamp, MoveClamp);
+            SetXVelocity(CurrentXVelocity + Input.X * Acceleration * Time.fixedDeltaTime);
+            SetXVelocity(Mathf.Clamp(CurrentXVelocity, -MoveClamp, MoveClamp));
 
             var apexBonus = Mathf.Sign(Input.X) * _apexBonus * _apexPoint;
-            _currentXSpeed += apexBonus * Time.fixedDeltaTime;
-            _currentXSpeed *= TileSpeedMultiplier;
+            SetXVelocity(CurrentXVelocity + apexBonus * Time.fixedDeltaTime);
+            SetXVelocity(CurrentXVelocity * TileSpeedMultiplier);
         }
         else
         {
-            _currentXSpeed = Mathf.MoveTowards(_currentXSpeed, 0,
-                Deceleration + (Input.X == 0 ? 0 : Acceleration) * Time.fixedDeltaTime);
+            SetXVelocity(Mathf.MoveTowards(CurrentXVelocity, 0,
+                Deceleration + (Input.X == 0 ? 0 : Acceleration) * Time.fixedDeltaTime));
         }
+    }
+
+    #endregion
+
+    #region Dash
+
+    [Header("DASH")] [SerializeField] private float _dashVelocity = 40f;
+    [SerializeField] private float _dashTime = 0.1f;
+    [SerializeField] private SpriteRenderer _spriteRendererPrefab;
+
+    private static ObjectPool<SpriteRenderer> _pool;
+
+    private bool _dashedThisFrame;
+
+    private Timer _dashTimer;
+
+    private void CalculateDash()
+    {
+        if (Input.DashDown && !_dashTimer)
+        {
+            _dashTimer.Set();
+            Vector2 _dashDirection = new(Input.X, Input.Y);
+            if (_dashDirection != Vector2.zero)
+            {
+                SetXVelocity(_dashVelocity * _dashDirection.normalized.x);
+                SetYVelocity(_dashVelocity * _dashDirection.normalized.y);
+            }
+            else
+            {
+                SetXVelocity(_dashVelocity * (_facingLeft ? -1 : 1));
+            }
+
+            _dashedThisFrame = true;
+            _rigidbody.gravityScale = 0;
+        }
+        else if (_dashTimer)
+        {
+            StartCoroutine(Fade());
+        }
+        else
+        {
+            _dashedThisFrame = false;
+        }
+    }
+
+    private  IEnumerator Fade()
+    {
+        var sprite = _pool.Get();
+        sprite.sprite = _spriteRenderer.sprite;
+        for (var i = 0; i < 20; i++)
+        {
+            var color = sprite.color;
+            sprite.color = new Color(color.r, color.g, color.b, color.a - 5);
+            yield return null;
+        }
+        
+        _pool.Release(sprite);
     }
 
     #endregion
@@ -310,16 +389,15 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     private bool CanUseCoyote =>
         _coyoteUsable && !_collisionDown && _timeLeftGrounded + _coyoteTimeThreshold > Time.time;
 
-    private bool HasBufferedJump => _collisionDown && _lastJumpPressed + _jumpBuffer > Time.time;
+    private bool HasBufferedJump => CanJump && _lastJumpPressed + _jumpBuffer > Time.time;
 
-    private bool CanJumpInAir => !_collisionDown && _jumpsLeft > 0 && _lastJumpedTime + _jumpDeltaTime < Time.time;
+    private bool CanJump => _jumpsLeft > 0 && _lastJumpedTime + _jumpDeltaTime < Time.time;
 
     private void CalculateJumpApex()
     {
         if (!_collisionDown)
         {
             _apexPoint = Mathf.InverseLerp(_jumpApexThreshold, 0, Mathf.Abs(Velocity.y));
-            _fallSpeed = Mathf.Lerp(_minFallSpeed, _maxFallSpeed, _apexPoint);
         }
         else
         {
@@ -329,10 +407,10 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void CalculateJump()
     {
-        if (Input.JumpDown && !_collisionUp && (CanUseCoyote || CanJumpInAir) || HasBufferedJump)
+        if (Input.JumpDown && !_collisionUp && (CanUseCoyote || HasBufferedJump))
         {
             PlayJumpSound();
-            _currentYSpeed = _jumpHeight * TileJumpMultiplier;
+            SetYVelocity(_jumpHeight * TileJumpMultiplier);
             _endedJumpEarly = false;
             _coyoteUsable = false;
             _timeLeftGrounded = float.MinValue;
@@ -350,7 +428,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
             _endedJumpEarly = true;
         }
 
-        if (_collisionUp && _currentYSpeed > 0) _currentYSpeed = 0;
+        // if (_collisionUp && _currentYSpeed > 0) _currentYSpeed = 0;
     }
 
     private void RestoreJumps() => _jumpsLeft = _totalJumps;
@@ -359,10 +437,28 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Move
 
+    private float CurrentXVelocity => _rigidbody.velocity.x;
+    private float CurrentYVelocity => _rigidbody.velocity.y;
+
+    private void SetXVelocity(float xVelocity)
+    {
+        _rigidbody.velocity = new Vector2(xVelocity, _rigidbody.velocity.y);
+    }
+
+    private void SetYVelocity(float yVelocity)
+    {
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, yVelocity);
+    }
+
+    private void SetGravity(float gravity)
+    {
+        _rigidbody.gravityScale = gravity;
+    }
+
     private void MoveCharacter()
     {
-        RawMovement = new Vector3(_currentXSpeed, _currentYSpeed);
-        _rigidbody.velocity = RawMovement;
+        // RawMovement = new Vector3(_currentXSpeed, _currentYSpeed);
+        // _rigidbody.velocity = RawMovement;
     }
 
     #endregion
@@ -383,6 +479,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     private static readonly int XVelocityAnimFloat = Animator.StringToHash("xVelocity");
     private static readonly int YVelocityAnimFloat = Animator.StringToHash("yVelocity");
     private static readonly int GroundedAnimBool = Animator.StringToHash("grounded");
+    private static readonly int InputX = Animator.StringToHash("inputX");
 
     private bool _facingLeft;
 
@@ -392,6 +489,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         _spriteRenderer.flipX = _facingLeft;
 
         _animator.SetFloat(XVelocityAnimFloat, Mathf.Abs(Velocity.x));
+        _animator.SetBool(InputX, Input.X != 0);
         _animator.SetFloat(YVelocityAnimFloat, Velocity.y);
         _animator.SetBool(GroundedAnimBool, Grounded);
     }
@@ -401,7 +499,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         var clip = _cachedTile.GetStepSound();
         if (clip != null)
         {
-            CoroutineManager.StartRoutine(AudioManager.PlaySound(clip));
+            AudioManager.PlaySound(clip);
         }
     }
 
@@ -410,7 +508,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         var clip = _cachedTile.GetJumpSound();
         if (clip != null)
         {
-            CoroutineManager.StartRoutine(AudioManager.PlaySound(clip));
+            AudioManager.PlaySound(clip);
         }
     }
 
@@ -419,14 +517,13 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         var clip = _cachedTile.GetLandSound();
         if (clip != null)
         {
-            CoroutineManager.StartRoutine(AudioManager.PlaySound(clip));
+            AudioManager.PlaySound(clip);
         }
     }
 
     #endregion
 }
 
-[Serializable]
 public struct CachedTile
 {
     public Collider2D Collider;
@@ -434,7 +531,7 @@ public struct CachedTile
     public float AccelerationMultiplier;
     public float DecelerationMultiplier;
     public float JumpMultiplier;
-    public float BuoyancySpeedAddon;
+    public float BuoyancyAcceleration;
     public bool Cached;
 
     public TileInfo Info;
@@ -447,7 +544,7 @@ public struct CachedTile
             AccelerationMultiplier = Info.AccelerationMultiplier;
             DecelerationMultiplier = Info.DecelerationMultiplier;
             JumpMultiplier = Info.JumpMultiplier;
-            BuoyancySpeedAddon = Info.BuoyancySpeedAddon;
+            BuoyancyAcceleration = Info.BuoyancyAcceleration;
         }
         else
         {
@@ -455,7 +552,7 @@ public struct CachedTile
             AccelerationMultiplier = 1f;
             DecelerationMultiplier = 1f;
             JumpMultiplier = 1f;
-            BuoyancySpeedAddon = 0f;
+            BuoyancyAcceleration = 0f;
         }
     }
 
