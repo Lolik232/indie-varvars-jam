@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game
 {
     public class RoomPoolManager : MonoBehaviour
     {
+        public UnityEvent<Action> RoomUnloaded;
+        
+
         [Header("Channels")]
         [SerializeField] private GameObjectEventChannelSO _loadedRoomEventChannelSO;
-        
-        
+
+
         //TODO: int -> Room
-        private Queue<GameObject> _loadedRooms;
+        private LinkedList<GameObject> _loadedRooms;
 
         [Header("Settings")]
         [SerializeField] private int _maxLoadedRooms = 3;
@@ -42,14 +46,18 @@ namespace Game
                 UnloadLastRoom();
             }
 
-            var roomToUnload = _loadedRooms.Peek();
+            var roomToUnload = _loadedRooms.First.Value;
+
+            
+            
+            _loadedRooms.RemoveFirst();
             roomToUnload.SetActive(false);
             Destroy(roomToUnload, 0.2f);
         }
 
         private void LoadNewRoom(GameObject newRoom)
         {
-            _loadedRooms.Enqueue(newRoom);
+            _loadedRooms.AddLast(newRoom);
         }
     }
 }
