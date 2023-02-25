@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 {
     private float _currentXSpeed, _currentYSpeed;
@@ -97,6 +98,8 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [SerializeField] private Collider2D _ceilChecker;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     private Transform _transform;
 
 
@@ -116,6 +119,10 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         if (!_activated) return;
 
         GatherInput();
+
+        _facingLeft = Input.X < 0 || Input.X == 0 && _facingLeft;
+        _spriteRenderer.flipX = _facingLeft;
+        _animator.SetBool(Move, Input.X != 0 && Grounded);
     }
 
     private void FixedUpdate()
@@ -187,7 +194,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     private void CacheTileInfo()
     {
         int count = _groundChecker.GetContacts(_environmentFilter, _colliderBuffer);
-        
+
         _cachedTileThisFrame = false;
         for (int i = 0; i < count; i++)
         {
@@ -366,6 +373,14 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     {
         _activated = true;
     }
+
+    #endregion
+
+    #region Animation
+
+    private static readonly int Move = Animator.StringToHash("move");
+
+    private bool _facingLeft;
 
     #endregion
 }

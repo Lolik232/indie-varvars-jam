@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8e3cce361085a9428f46e1a741ab10d
+guid: 6c38085a67f65d84a8b722e1ac530faa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,11 +117,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hero_right_movepng_0
+      name: hero_left_move_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 0
         width: 80
         height: 96
       alignment: 0
@@ -131,18 +131,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f19b8e7d2990844dbb8a51a8d92af3f
-      internalID: 261428652
+      spriteID: 2614e9f4c324154419d6b21a52ca69ba
+      internalID: 144801462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero_right_movepng_1
+      name: hero_left_move_1
       rect:
         serializedVersion: 2
         x: 80
-        y: 32
+        y: 0
         width: 80
         height: 96
       alignment: 0
@@ -152,18 +152,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87631e6157c72b64fbfae1d95ad5e052
-      internalID: 1846983067
+      spriteID: e6c6880b5a1ca1f46b6882330a787da3
+      internalID: 428085773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero_right_movepng_2
+      name: hero_left_move_2
       rect:
         serializedVersion: 2
         x: 160
-        y: 32
+        y: 0
         width: 80
         height: 96
       alignment: 0
@@ -173,18 +173,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c009df31e8aa87f44b2c2811b0032e47
-      internalID: -1915834675
+      spriteID: 0598af7fe95ed9a4093801919989937d
+      internalID: -544665353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero_right_movepng_3
+      name: hero_left_move_3
       rect:
         serializedVersion: 2
         x: 240
-        y: 32
+        y: 0
         width: 80
         height: 96
       alignment: 0
@@ -194,18 +194,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 376596629c5d637499b3d2d4d254d387
-      internalID: -609543490
+      spriteID: 308a0a047278cdd45b65f8c2715aebdf
+      internalID: 503831590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero_right_movepng_4
+      name: hero_left_move_4
       rect:
         serializedVersion: 2
         x: 320
-        y: 32
+        y: 0
         width: 80
         height: 96
       alignment: 0
@@ -215,18 +215,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34ed889eede88f749bcf56088c092f34
-      internalID: -939832092
+      spriteID: 80944f9a04ba29448ab425cde59b8db1
+      internalID: -659399042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero_right_movepng_5
+      name: hero_left_move_5
       rect:
         serializedVersion: 2
         x: 400
-        y: 32
+        y: 0
         width: 80
         height: 96
       alignment: 0
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c84b107a1362c474ea29d492ddf6aef8
-      internalID: 1610609254
+      spriteID: 2ef41627fc6c2784dbe8755aa441e9a2
+      internalID: -1740955690
       vertices: []
       indices: 
       edges: []
@@ -253,12 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hero_right_movepng_0: 261428652
-      hero_right_movepng_1: 1846983067
-      hero_right_movepng_2: -1915834675
-      hero_right_movepng_3: -609543490
-      hero_right_movepng_4: -939832092
-      hero_right_movepng_5: 1610609254
+      hero_left_move_0: 144801462
+      hero_left_move_1: 428085773
+      hero_left_move_2: -544665353
+      hero_left_move_3: 503831590
+      hero_left_move_4: -659399042
+      hero_left_move_5: -1740955690
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

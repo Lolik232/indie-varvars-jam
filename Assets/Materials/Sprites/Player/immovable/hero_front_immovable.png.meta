@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50e23599261d08b46a0f6914806523c3
+guid: 80396fc0c9d3d8140bb285bc588ef761
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,127 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hero_left_move_0
+      name: hero_front_immovable_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 0
-        width: 80
+        width: 64
         height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2614e9f4c324154419d6b21a52ca69ba
-      internalID: 144801462
+      spriteID: d1853350bb9dbdd42b84c10824af2dca
+      internalID: 604571786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero_left_move_1
+      name: hero_front_immovable_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 96
         y: 0
-        width: 80
+        width: 64
         height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6c6880b5a1ca1f46b6882330a787da3
-      internalID: 428085773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hero_left_move_2
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0598af7fe95ed9a4093801919989937d
-      internalID: -544665353
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hero_left_move_3
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 308a0a047278cdd45b65f8c2715aebdf
-      internalID: 503831590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hero_left_move_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80944f9a04ba29448ab425cde59b8db1
-      internalID: -659399042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hero_left_move_5
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ef41627fc6c2784dbe8755aa441e9a2
-      internalID: -1740955690
+      spriteID: cd398f6e66dd7a74d830fb34ae9d7f8a
+      internalID: 1403359081
       vertices: []
       indices: 
       edges: []
@@ -253,12 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hero_left_move_0: 144801462
-      hero_left_move_1: 428085773
-      hero_left_move_2: -544665353
-      hero_left_move_3: 503831590
-      hero_left_move_4: -659399042
-      hero_left_move_5: -1740955690
+      hero_front_immovable_0: 604571786
+      hero_front_immovable_1: 1403359081
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
