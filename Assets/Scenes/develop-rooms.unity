@@ -371,6 +371,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2f1d043046cc54faad8693724f9547, type: 3}
+--- !u!1 &420534453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 420534455}
+  - component: {fileID: 420534454}
+  - component: {fileID: 420534456}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &420534454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420534453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa60ebb102f401cb1f821e9f7250102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomUnloaded:
+    m_PersistentCalls:
+      m_Calls: []
+  _loadedRoomEventChannelSO: {fileID: 0}
+  _startRoom: {fileID: 695322433}
+  _maxLoadedRooms: 5
+--- !u!4 &420534455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420534453}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.90851, y: 15.365994, z: -0.140393}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &420534456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420534453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a743f7ec677b429ba29e5cbfc5c203d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: []
+  UpChangeDirection: []
+  Right:
+  - {fileID: 3505788486049633566, guid: df716e40966c2cc49802366f8131d3c2, type: 3}
+  RightChangeDirection: []
+  Left: []
+  LeftChangeDirection: []
+  Down: []
+  DownChangeDirection: []
 --- !u!1 &512844603
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +1028,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f5bd563fa70134b88aba4995819c41, type: 3}
+--- !u!114 &695322433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3505788486049633566, guid: df716e40966c2cc49802366f8131d3c2, type: 3}
+  m_PrefabInstance: {fileID: 900691353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb238b4f06a4cc2970534540c3d4c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &900691353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1010,6 +1093,14 @@ PrefabInstance:
     - target: {fileID: 1311003792892780325, guid: df716e40966c2cc49802366f8131d3c2, type: 3}
       propertyPath: m_Name
       value: Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015124253123512554, guid: df716e40966c2cc49802366f8131d3c2, type: 3}
+      propertyPath: m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015124253123512554, guid: df716e40966c2cc49802366f8131d3c2, type: 3}
+      propertyPath: m_SortOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8875233530994290689, guid: df716e40966c2cc49802366f8131d3c2, type: 3}
       propertyPath: m_ColliderPaths.Array.size

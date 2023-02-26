@@ -1,12 +1,16 @@
 ﻿using System;
-using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = System.Numerics.Vector3;
 
 
 public class Room : MonoBehaviour
 {
+    public static event Action PlayerLeaveRoom;
+
+
     #region Props
 
     public Vector2 RoomDirection => _roomDirection;
@@ -15,7 +19,9 @@ public class Room : MonoBehaviour
 
     [Header("SETTINGS")]
     [SerializeField] private Transform _startRoomPoint;
-    [SerializeField] private Transform _endRoomPoint;
+    [SerializeField] private TilemapCollider2D _startRoomPointCol;
+    [SerializeField] private Transform         _endRoomPoint;
+    [SerializeField] private TilemapCollider2D _endRoomPointCol;
     [Space]
     [SerializeField] private Vector2 _roomDirection = Vector2.right;
 
@@ -31,8 +37,8 @@ public class Room : MonoBehaviour
 
     private bool PlayerInRoom { get; set; } = false;
 
-    public Transform StartRoomPoint => _startRoomPoint;
-    public Transform EndRoomPoint   => _endRoomPoint;
+    public UnityEngine.Vector3 StartRoomPoint => _startRoomPointCol.bounds.center;
+    public UnityEngine.Vector3 EndRoomPoint   => _endRoomPointCol.bounds.center;
 
     private void Awake()
     {
@@ -56,8 +62,18 @@ public class Room : MonoBehaviour
             PlayerInRoom          = false;
 #if UNITY_EDITOR
             Debug.Log("Player leave room");
+            OnPlayerLeaveRoom();
 #endif
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        var boundsEnter = _startRoomPointCol.bounds;
+        var boundsExit  = _endRoomPointCol.bounds;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(boundsEnter.center, boundsEnter.size);
+        Gizmos.DrawWireCube(boundsExit.center, boundsExit.size);
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -73,5 +89,10 @@ public class Room : MonoBehaviour
             Debug.Log("Player in room");
 #endif
         }
+    }
+
+    private static void OnPlayerLeaveRoom()
+    {
+        PlayerLeaveRoom?.Invoke();
     }
 }

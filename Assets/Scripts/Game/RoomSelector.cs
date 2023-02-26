@@ -21,8 +21,8 @@ namespace Game
 
         private Room GetRandomRoom(List<Room> selection)
         {
-            var rand  = new Unity.Mathematics.Random();
-            var index = rand.NextInt(0, selection.Count);
+            var rand  = new System.Random();
+            var index = rand.Next(0, selection.Count);
             return selection[index];
         }
 
