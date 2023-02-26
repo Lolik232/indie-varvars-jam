@@ -4,6 +4,8 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static int Score { get; private set; }
+    
+    public static int MaxScore { get; set; }
 
     public static ScoreManager Instance { get; private set; }
 
@@ -16,6 +18,10 @@ public class ScoreManager : MonoBehaviour
     public static void AddPoints(int points)
     {
         Score += points;
-        Debug.Log(Score);
+    }
+    
+    public static void ResetPoints()
+    {
+        Score = 0;
     }
 }
