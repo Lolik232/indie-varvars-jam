@@ -24,12 +24,12 @@ public class VolumeManager : MonoBehaviour
         mixer.audioMixer.SetFloat(name, SqrtInterpolation(-80, 0, volume));
         PlayerPrefs.SetFloat(name, volume);
     }
-    
+
     private static float SqrtInterpolation(float a, float b, float t)
     {
-        return a + (b - a) * (float) Math.Sqrt(t);
+        return a + (b - a) * (float)Math.Pow(t, 1.0 / 6.0);
     }
-    
+
     public void OnGameSlider(float volume)
     {
         ChangeVolume("GameVolume", volume);
