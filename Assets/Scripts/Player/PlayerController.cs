@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Activator))]
@@ -28,8 +29,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private readonly Trigger JumpDownTrigger = new();
     private readonly Trigger JumpUpTrigger = new();
-    private readonly Trigger DashDownTrigger = new();
-    private readonly Trigger DashUpTrigger = new();
+    private bool _dashInput;
     private readonly Trigger UseItemDownTrigger = new();
     private readonly Trigger UseItemUpTrigger = new();
 
@@ -54,14 +54,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     public void OnDashInput(InputAction.CallbackContext input)
     {
-        if (input.started)
-        {
-            DashDownTrigger.Set();
-        }
-        else if (input.canceled)
-        {
-            DashUpTrigger.Set();
-        }
+        _dashInput = input.performed;
     }
 
     public void OnUseItemInput(InputAction.CallbackContext input)
@@ -85,12 +78,24 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
             JumpDown = JumpDownTrigger,
             JumpUp = JumpUpTrigger,
+            
+            UseItemDown = UseItemDownTrigger,
 
-            DashDown = DashDownTrigger,
-            DashUp = DashUpTrigger
+            DashX = _dashInput ? _moveInput.x : 0
         };
 
-        if (Input.JumpDown) _lastJumpPressed = Time.time;
+        if (Input.UseItemDown)
+        {
+            Inventory.UseChicken();
+            UseItemDownTrigger.Reset();
+        }
+
+        if (Input.JumpDown)
+        {
+            _lastJumpPressed = Time.time;
+            _jumpBufferTimer.Set();
+            JumpDownTrigger.Reset();
+        }
     }
 
     #endregion
@@ -101,6 +106,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [SerializeField] private Collider2D _groundChecker;
     [SerializeField] private Collider2D _leftWallChecker;
     [SerializeField] private Collider2D _rightWallChecker;
+    [SerializeField] private Collider2D _tileChecker;
     [SerializeField] private Collider2D _ceilChecker;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Animator _animator;
@@ -109,20 +115,21 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void Awake()
     {
+        Inventory.ChickenUseEvent += () => { _flyTimer.Set();};
         _dashTimer = new Timer(_dashTime);
+        _flyTimer = new Timer(_flyTime);
+        _dashCooldown = new Timer(_dashCooldownTime);
+        _dashTimer.ResetEvent += () => { _dashCooldown.Set(); };
         _environmentFilter = new ContactFilter2D
         {
             useTriggers = true,
             useLayerMask = true,
-            layerMask = _waterFilter.layerMask | _groundFilter.layerMask | _bushesFilter.layerMask
+            layerMask = _waterFilter.layerMask | _groundFilter.layerMask | _bushesFilter.layerMask |
+                        _springFilter.layerMask
         };
         _pool = new ObjectPool<SpriteRenderer>(
             () => Instantiate(_spriteRendererPrefab),
-            source =>
-            {
-                source.gameObject.SetActive(true);
-                
-            },
+            source => { source.gameObject.SetActive(true); },
             source => { source.gameObject.SetActive(false); },
             source => { Destroy(source.gameObject); },
             false, 5, 15
@@ -140,6 +147,15 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
         GatherInput();
         UpdateAnimation();
+
+        var color = _spriteRenderer.color;
+        _spriteRenderer.color = _groundChecker.IsTouchingLayers(_bushesFilter.layerMask)
+            ? new Color(color.r, color.g, color.b, 0.5f)
+            : new Color(color.r, color.g, color.b, 1f);
+
+        _spriteRenderer.color = Health.Protected
+            ? new Color(color.r, 0.3f, 0.3f, 0.3f)
+            : new Color(color.r, 1f, 1f, 1f);
     }
 
     private void FixedUpdate()
@@ -150,12 +166,22 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         // _currentXSpeed = Velocity.x;
         // _currentYSpeed = Velocity.y;
 
-        CheckCollisions();
-        TryCacheTileInfo(_groundChecker, _environmentFilter);
+        ApplyChickenFly();
+        
+        if (_isFlying)
+        {
+            return;
+        }
 
+        if (!TryCacheTileInfo(_tileChecker, _environmentFilter))
+        {
+            TryCacheTileInfo(_groundChecker, _environmentFilter);
+        }
+
+        CheckCollisions();
         CalculateDash();
 
-        if (!_dashedThisFrame)
+        if (!_dashTimer)
         {
             CalculateWalk();
             CalculateJumpApex();
@@ -174,6 +200,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [Header("COLLISION")] [SerializeField] private ContactFilter2D _groundFilter;
     [SerializeField] private ContactFilter2D _ceilFilter;
     [SerializeField] private ContactFilter2D _waterFilter;
+    [SerializeField] private ContactFilter2D _springFilter;
     [SerializeField] private ContactFilter2D _bushesFilter;
 
     private ContactFilter2D _environmentFilter;
@@ -193,12 +220,23 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         }
         else if (!_collisionDown && groundedCheck)
         {
-            _coyoteUsable = true;
             LandingThisFrame = true;
             PlayLandSound();
         }
 
-        if (_collisionDown = groundedCheck) RestoreJumps();
+        _collisionDown = groundedCheck;
+
+        if (groundedCheck)
+        {
+            _coyoteUsable = true;
+            if (!JumpingThisFrame)
+            {
+                RestoreJumps();
+            }
+
+            _canDash = true;
+        }
+
         _collisionUp = _ceilChecker.IsTouchingLayers(_groundFilter.layerMask);
         _collisionLeft = _leftWallChecker.IsTouchingLayers(_groundFilter.layerMask);
         _collisionRight = _rightWallChecker.IsTouchingLayers(_groundFilter.layerMask);
@@ -208,7 +246,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region TileInfo
 
-    private CachedTile _cachedTile;
+    [SerializeField] private CachedTile _cachedTile;
     private bool _cachedTileThisFrame;
 
     private float TileSpeedMultiplier => _cachedTile.SpeedMultiplier;
@@ -221,7 +259,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private bool TryCacheTileInfo(Collider2D checker, ContactFilter2D filter)
     {
-        var count = checker.OverlapCollider(filter, _colliderBuffer);
+        var count = checker.GetContacts(filter, _colliderBuffer);
 
         _cachedTileThisFrame = false;
         for (int i = 0; i < count; i++)
@@ -249,11 +287,12 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     private int GetComponentLayerPriority(Component component)
     {
         var layer = component.gameObject.layer;
-        if (layer == _waterFilter.layerMask) return 0;
-        if (layer == _bushesFilter.layerMask) return 1;
-        if (layer == _groundFilter.layerMask) return 2;
+        if ((_waterFilter.layerMask >> layer & 1) == 1) return 0;
+        if ((_bushesFilter.layerMask >> layer & 1) == 1) return 1;
+        if ((_springFilter.layerMask >> layer & 1) == 1) return 2;
+        if ((_groundFilter.layerMask >> layer & 1) == 1) return 3;
 
-        return 3;
+        return 4;
     }
 
     #endregion
@@ -273,6 +312,35 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         if (CurrentYVelocity < _failClamp) SetYVelocity(_failClamp);
 
         if (_endedJumpEarly && CurrentYVelocity > 0) SetYVelocity(CurrentYVelocity / _jumpEndEarlyGravityModifier);
+    }
+
+    #endregion
+
+    #region Fly
+
+    [Header("CHICKEH FLY")] [SerializeField]
+    private float _flyTime = 2f;
+
+    [SerializeField] private float _flySpeed = 12f;
+    private Timer _flyTimer;
+    private bool _isFlying;
+
+    private void ApplyChickenFly()
+    {
+        if (_flyTimer || _collider.GetContacts(_groundFilter, _colliderBuffer) > 0)
+        {
+            _rigidbody.gravityScale = 0;
+            _collider.isTrigger = true;
+            var input = new Vector2(Input.X, Input.Y).normalized;
+            SetXVelocity(input.x * _flySpeed);
+            SetYVelocity(input.y * _flySpeed);
+            _isFlying = true;
+        }
+        else
+        {
+            _collider.isTrigger = false;
+            _isFlying = false;
+        }
     }
 
     #endregion
@@ -315,56 +383,56 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Dash
 
-    [Header("DASH")] [SerializeField] private float _dashVelocity = 40f;
+    [Header("DASH")] [SerializeField] private float _dashVelocity = 80f;
+    [SerializeField] private float _dashCooldownTime = 2f;
     [SerializeField] private float _dashTime = 0.1f;
     [SerializeField] private SpriteRenderer _spriteRendererPrefab;
 
     private static ObjectPool<SpriteRenderer> _pool;
 
-    private bool _dashedThisFrame;
+    [SerializeField] private AudioClip[] _dashSound;
 
     private Timer _dashTimer;
+    private Timer _dashCooldown;
+    private bool _canDash;
 
     private void CalculateDash()
     {
-        if (Input.DashDown && !_dashTimer)
+        if (_canDash && !_dashTimer && !_dashCooldown && Input.DashX != 0)
         {
             _dashTimer.Set();
-            Vector2 _dashDirection = new(Input.X, Input.Y);
-            if (_dashDirection != Vector2.zero)
+            _canDash = false;
+            _facingLeft = Input.DashX < 0;
+            _spriteRenderer.flipX = _facingLeft;
+            SetYVelocity(0);
+            SetXVelocity(Input.DashX * _dashVelocity);
+            SetGravity(0);
+            if (_dashSound.Length != 0)
             {
-                SetXVelocity(_dashVelocity * _dashDirection.normalized.x);
-                SetYVelocity(_dashVelocity * _dashDirection.normalized.y);
+                AudioManager.PlaySound(_dashSound[Random.Range(0, _dashSound.Length)]);
             }
-            else
-            {
-                SetXVelocity(_dashVelocity * (_facingLeft ? -1 : 1));
-            }
-
-            _dashedThisFrame = true;
-            _rigidbody.gravityScale = 0;
         }
         else if (_dashTimer)
         {
             StartCoroutine(Fade());
         }
-        else
-        {
-            _dashedThisFrame = false;
-        }
     }
 
-    private  IEnumerator Fade()
+    private IEnumerator Fade()
     {
         var sprite = _pool.Get();
         sprite.sprite = _spriteRenderer.sprite;
+        sprite.transform.position = transform.position;
+        sprite.enabled = true;
+        var color = sprite.color;
+        sprite.color = new Color(color.r, color.g, color.b, 1);
         for (var i = 0; i < 20; i++)
         {
-            var color = sprite.color;
-            sprite.color = new Color(color.r, color.g, color.b, color.a - 5);
+            color = sprite.color;
+            sprite.color = new Color(color.r, color.g, color.b, color.a - 0.05f);
             yield return null;
         }
-        
+
         _pool.Release(sprite);
     }
 
@@ -377,21 +445,20 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [SerializeField] private float _jumpEndEarlyGravityModifier = 3f;
     [SerializeField] private float _coyoteTimeThreshold = 0.1f;
     [SerializeField] private float _jumpBuffer = 0.1f;
-    [SerializeField] private float _jumpDeltaTime = 0.2f;
     [SerializeField] private int _totalJumps = 2;
+    private Timer _jumpBufferTimer = new(0.1f);
     private bool _coyoteUsable;
     private bool _endedJumpEarly = true;
     private float _apexPoint;
     private float _lastJumpPressed;
-    private float _lastJumpedTime;
     private int _jumpsLeft;
 
     private bool CanUseCoyote =>
         _coyoteUsable && !_collisionDown && _timeLeftGrounded + _coyoteTimeThreshold > Time.time;
 
-    private bool HasBufferedJump => CanJump && _lastJumpPressed + _jumpBuffer > Time.time;
+    private bool CanJump => _jumpsLeft > 0;
 
-    private bool CanJump => _jumpsLeft > 0 && _lastJumpedTime + _jumpDeltaTime < Time.time;
+    private bool HasBufferedJump => _lastJumpPressed + _jumpBuffer > Time.time;
 
     private void CalculateJumpApex()
     {
@@ -407,15 +474,16 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void CalculateJump()
     {
-        if (Input.JumpDown && !_collisionUp && (CanUseCoyote || HasBufferedJump))
+        if (HasBufferedJump && CanJump)
         {
+            _jumpBufferTimer.Reset();
             PlayJumpSound();
             SetYVelocity(_jumpHeight * TileJumpMultiplier);
             _endedJumpEarly = false;
             _coyoteUsable = false;
             _timeLeftGrounded = float.MinValue;
+            _lastJumpPressed = float.MinValue;
             JumpingThisFrame = true;
-            _lastJumpedTime = Time.time;
             _jumpsLeft--;
         }
         else
@@ -431,7 +499,10 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         // if (_collisionUp && _currentYSpeed > 0) _currentYSpeed = 0;
     }
 
-    private void RestoreJumps() => _jumpsLeft = _totalJumps;
+    private void RestoreJumps()
+    {
+        _jumpsLeft = _totalJumps;
+    }
 
     #endregion
 
@@ -524,6 +595,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     #endregion
 }
 
+[Serializable]
 public struct CachedTile
 {
     public Collider2D Collider;
@@ -558,16 +630,16 @@ public struct CachedTile
 
     public AudioClip GetStepSound()
     {
-        return Info == null ? null : Info.GetStepSound();
+        return Cached ? Info.GetStepSound() : null;
     }
 
     public AudioClip GetJumpSound()
     {
-        return Info == null ? null : Info.GetJumpSound();
+        return Cached ? Info.GetJumpSound() : null;
     }
 
     public AudioClip GetLandSound()
     {
-        return Info == null ? null : Info.GetLandSound();
+        return Cached ? Info.GetStepSound() : null;
     }
 }

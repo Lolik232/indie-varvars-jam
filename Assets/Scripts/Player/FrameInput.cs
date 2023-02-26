@@ -16,8 +16,7 @@
 
     #region Dash
 
-    public bool DashDown;
-    public bool DashUp;
+    public float DashX;
 
     #endregion
 

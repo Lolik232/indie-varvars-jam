@@ -32,16 +32,16 @@ public class TileInfo : MonoBehaviour
 
     public AudioClip GetStepSound()
     {
-        return _stepSound.Length == 0 ? null : _stepSound[Random.Range(0, _stepSound.Length - 1)];
+        return _stepSound.Length == 0 ? null : _stepSound[Random.Range(0, _stepSound.Length)];
     }
 
     public AudioClip GetJumpSound()
     {
-        return _jumpSound.Length == 0 ? null : _jumpSound[Random.Range(0, _jumpSound.Length - 1)];
+        return _jumpSound.Length == 0 ? null : _jumpSound[Random.Range(0, _jumpSound.Length)];
     }
     
     public AudioClip GetLandSound()
     {
-        return _landSound.Length == 0 ? null : _landSound[Random.Range(0, _landSound.Length - 1)];
+        return _landSound.Length == 0 ? null : _landSound[Random.Range(0, _landSound.Length)];
     }
 }
