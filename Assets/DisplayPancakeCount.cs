@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,15 +9,21 @@ public class DisplayPancakeCount : MonoBehaviour
 {
     private int _score;
     [SerializeField] private TextMeshProUGUI text;
-    void Start()
+    private void Start()
     {
-       _score =  PlayerPrefs.GetInt("Score", 0);
+       _score =  PlayerPrefs.GetInt("MaxScore", 0);
        text.text = _score.ToString();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         text.text = ScoreManager.Score.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        ScoreManager.MaxScore = ScoreManager.Score;
+        ScoreManager.ResetPoints();
     }
 }
