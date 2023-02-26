@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Unity
 
+    [SerializeField] private ParticleSystem _dust;
     [SerializeField] private Collider2D _collider;
     [SerializeField] private Collider2D _groundChecker;
     [SerializeField] private Collider2D _tileChecker;
@@ -476,6 +477,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     {
         if (HasBufferedJump && CanJump)
         {
+            _dust.Play();
             _jumpBufferTimer.Reset();
             PlayJumpSound();
             SetYVelocity(_jumpHeight * TileJumpMultiplier);
