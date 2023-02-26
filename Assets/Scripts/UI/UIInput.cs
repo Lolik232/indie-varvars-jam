@@ -17,7 +17,7 @@ public class UIInput : MonoBehaviour
 
     public void OnPlayButton()
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene(1);
     }
 
     public void OnMainMenuButton()
