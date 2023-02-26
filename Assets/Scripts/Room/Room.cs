@@ -8,8 +8,7 @@ using Vector3 = System.Numerics.Vector3;
 
 public class Room : MonoBehaviour
 {
-    public static event Action PlayerLeaveRoom;
-
+    public static event Action<Room> PlayerLeaveRoom;
 
     #region Props
 
@@ -60,9 +59,9 @@ public class Room : MonoBehaviour
         {
             _outCollier.isTrigger = false;
             PlayerInRoom          = false;
+            OnPlayerLeaveRoom();
 #if UNITY_EDITOR
             Debug.Log("Player leave room");
-            OnPlayerLeaveRoom();
 #endif
         }
     }
@@ -91,8 +90,8 @@ public class Room : MonoBehaviour
         }
     }
 
-    private static void OnPlayerLeaveRoom()
+    private void OnPlayerLeaveRoom()
     {
-        PlayerLeaveRoom?.Invoke();
+        PlayerLeaveRoom?.Invoke(this);
     }
 }

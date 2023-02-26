@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 2705503486505092230}
   - component: {fileID: 9034884065954918805}
   - component: {fileID: 5080514741759506611}
+  - component: {fileID: 8110763772129630165}
   m_Layer: 3
   m_Name: Platforms
   m_TagString: Untagged
@@ -767,6 +768,26 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &8110763772129630165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160710025717701972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
+  _jumpMultiplier: 1
+  buoyancyAcceleration: 0
+  _stepSound: []
+  _landSound: []
+  _jumpSound: []
 --- !u!1 &1311003792892780325
 GameObject:
   m_ObjectHideFlags: 0
@@ -13454,7 +13475,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -238101007
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -13665,6 +13686,7 @@ GameObject:
   - component: {fileID: 6002817533015343598}
   - component: {fileID: 8353145210795693356}
   - component: {fileID: 8875233530994290689}
+  - component: {fileID: 2833984734499816134}
   m_Layer: 3
   m_Name: Borders
   m_TagString: Untagged
@@ -14767,8 +14789,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -238101007
-  m_SortingLayer: -3
+  m_SortingLayerID: 454983365
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -14869,3 +14891,23 @@ CompositeCollider2D:
       - {x: -26.999971, y: 21}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &2833984734499816134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906874246047921529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
+  _jumpMultiplier: 1
+  buoyancyAcceleration: 0
+  _stepSound: []
+  _landSound: []
+  _jumpSound: []

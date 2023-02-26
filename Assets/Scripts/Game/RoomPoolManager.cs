@@ -22,15 +22,10 @@ namespace Game
         private readonly Queue<Room>      _roomsToRemove = new Queue<Room>();
 
         [Header("Settings")]
-        [SerializeField] private int _maxLoadedRooms = 4;
+        [SerializeField] private int _maxLoadedRooms = 5;
 
         private void Awake()
         {
-            // if (_loadedRoomEventChannelSO == null)
-            // {
-            //     throw new ArgumentNullException($"Loaded room event channel is null");
-            // }
-
             _roomSelector = GetComponent<RoomSelector>();
         }
 
@@ -46,8 +41,10 @@ namespace Game
             Room.PlayerLeaveRoom -= RoomToRemove;
         }
 
-        private void RoomToRemove()
+        private void RoomToRemove(Room leavedRoom)
         {
+            if(leavedRoom != _loadedRooms.First.Value) return;
+            
             var room = _loadedRooms.First.Value;
             _loadedRooms.RemoveFirst();
             _roomsToRemove.Enqueue(room);
@@ -55,12 +52,12 @@ namespace Game
 
         private void Update()
         {
-            if (_roomsToRemove.Count >= 2)
+            if (_roomsToRemove.Count > 2)
             {
                 UnloadFirstRoomCoroutine();
             }
 
-            if (_loadedRooms.Count + _roomsToRemove.Count < _maxLoadedRooms)
+            if (_loadedRooms.Count < _maxLoadedRooms)
             {
                 LoadLastRoom();
             }
@@ -68,13 +65,13 @@ namespace Game
 
         private void UnloadFirstRoomCoroutine()
         {
-            if (_roomsToRemove.Count >= 2)
+            if (_roomsToRemove.Count > 2)
             {
                 var roomToUnload = _roomsToRemove.Dequeue();
              
                 GameObject o;
                 (o = roomToUnload.gameObject).SetActive(false);
-
+                
                 Destroy(o);
             }
         }
@@ -87,14 +84,11 @@ namespace Game
             var res = _loadedRooms.Last.Value.EndRoomPoint;
             res += instRoom.gameObject.transform.position - instRoom.StartRoomPoint;
           
-            // var instantiatePosition = res;
-            
-            // var obj = Instantiate(room, instantiatePosition, new Quaternion());
-            // if (obj == null)
-            // {
-            //     Debug.Log("Cracked... Room was not instantiated");
-            //     throw new ArgumentNullException($"Room was not instantiated");
-            // }
+            if (instRoom == null)
+            {
+                Debug.Log("Cracked... Room was not instantiated");
+                throw new ArgumentNullException($"Room was not instantiated");
+            }
 
             instRoom.transform.position = res;
 
