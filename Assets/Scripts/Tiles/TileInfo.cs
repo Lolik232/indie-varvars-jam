@@ -1,44 +1,46 @@
+using System.Collections.Generic;
 using UnityEngine;
-
-public enum TileType
-{
-    Snow,
-    Ice,
-    Ground,
-    Grace,
-    Stone,
-    Bushes,
-    Water,
-}
+using UnityEngine.Serialization;
 
 public class TileInfo : MonoBehaviour
 {
-    [SerializeField] private TileType _type;
-
     [Header("MOVEMENT")] [SerializeField] private float _speedMultiplier = 1f;
-    [SerializeField] private float _jumpMultiplier = 1f;
-    [SerializeField] private float _buoyancyAcceleration = 0f;
+    [SerializeField, Range(0, 10f)] private float accelerationMultiplier;
+    [SerializeField, Range(0, 10f)] private float _decelerationMultiplier;
+
+    [Header("JUMP")] [SerializeField, Range(0.1f, 3f)]
+    private float _jumpMultiplier = 1f;
+
+    [Header("GRAVITY")] [SerializeField, Range(-120f, 120f)]
+    private float buoyancySpeedAddon;
 
     [Header("SOUND")] [SerializeField] private AudioClip[] _stepSound;
     [SerializeField] private AudioClip[] _landSound;
     [SerializeField] private AudioClip[] _jumpSound;
 
-    public TileType Type => _type;
 
     public float SpeedMultiplier => _speedMultiplier;
 
+    public float AccelerationMultiplier => accelerationMultiplier;
+
+    public float DecelerationMultiplier => _decelerationMultiplier;
+
     public float JumpMultiplier => _jumpMultiplier;
 
-    public float BuoyancyAcceleration => _buoyancyAcceleration;
+    public float BuoyancySpeedAddon => buoyancySpeedAddon;
 
-    public AudioClip[] StepSound => _stepSound;
-
-    public AudioClip[] LandSound => _landSound;
-
-    public AudioClip[] JumpSound => _jumpSound;
-
-    public static void PlaySound(AudioSource source, AudioClip[] sounds)
+    public AudioClip GetStepSound()
     {
-        source.PlayOneShot(sounds[Random.Range(0, sounds.Length - 1)]);
+        return _stepSound.Length == 0 ? null : _stepSound[Random.Range(0, _stepSound.Length - 1)];
+    }
+
+    public AudioClip GetJumpSound()
+    {
+        return _jumpSound.Length == 0 ? null : _jumpSound[Random.Range(0, _jumpSound.Length - 1)];
+    }
+    
+    public AudioClip GetLandSound()
+    {
+        return _landSound.Length == 0 ? null : _landSound[Random.Range(0, _landSound.Length - 1)];
     }
 }

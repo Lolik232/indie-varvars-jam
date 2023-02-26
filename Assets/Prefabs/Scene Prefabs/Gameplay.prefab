@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574283444010623318}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &574283442260705132
 Tilemap:
@@ -197,13 +197,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 1
   _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
   _jumpMultiplier: 1
-  _buoyancyAcceleration: 0
-  _stepSound: {fileID: 0}
-  _landSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
+  buoyancySpeedAddon: 0
+  _stepSound:
+  - {fileID: 8300000, guid: ddf8026796b38ec439336c8750c95cfb, type: 3}
+  - {fileID: 8300000, guid: 3d64cd9d254613f43a0dddaac3234f6c, type: 3}
+  - {fileID: 8300000, guid: 432bf72f8cff6364381bf47076c7235c, type: 3}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 0}
 --- !u!1 &574283442666442035
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574283444010623318}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &574283442666442038
 Tilemap:
@@ -401,13 +407,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 2
   _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
   _jumpMultiplier: 1
-  _buoyancyAcceleration: 0
-  _stepSound: {fileID: 0}
-  _landSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
+  buoyancySpeedAddon: 0
+  _stepSound:
+  - {fileID: 0}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 0}
 --- !u!1 &574283442670793699
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,8 +652,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 574283444010623318}
-  m_RootOrder: 1
+  m_Father: {fileID: 574283443888610749}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &574283443307536834
 Tilemap:
@@ -721,8 +731,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 454983365
-  m_SortingLayer: -5
+  m_SortingLayerID: -238101007
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -805,13 +815,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 5
   _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
   _jumpMultiplier: 1
-  _buoyancyAcceleration: 0
-  _stepSound: {fileID: 0}
-  _landSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
+  buoyancySpeedAddon: 0
+  _stepSound:
+  - {fileID: 0}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 0}
 --- !u!1 &574283443854585368
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,8 +860,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 574283444010623318}
-  m_RootOrder: 0
+  m_Father: {fileID: 574283443888610749}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &574283443854585374
 Tilemap:
@@ -925,8 +939,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 454983365
-  m_SortingLayer: -5
+  m_SortingLayerID: -238101007
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1009,13 +1023,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 4
   _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
   _jumpMultiplier: 1
-  _buoyancyAcceleration: 7.5
-  _stepSound: {fileID: 0}
-  _landSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
+  buoyancySpeedAddon: 0
+  _stepSound:
+  - {fileID: 0}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 0}
 --- !u!1 &574283443888610748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,8 +1043,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 574283443888610749}
-  - component: {fileID: 574283443888610751}
-  - component: {fileID: 574283443888610750}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -1045,97 +1061,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 574283443307536845}
+  - {fileID: 574283443854585369}
   m_Father: {fileID: 574283442705338064}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1839735485 &574283443888610751
-Tilemap:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574283443888610748}
-  m_Enabled: 1
-  m_Tiles: {}
-  m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
-  m_TileObjectToInstantiateArray: []
-  m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
-  m_TileOrientationMatrix:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
---- !u!483693784 &574283443888610750
-TilemapRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574283443888610748}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -238101007
-  m_SortingLayer: -4
-  m_SortingOrder: 0
-  m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
-  m_MaxChunkCount: 16
-  m_MaxFrameAge: 16
-  m_SortOrder: 0
-  m_Mode: 0
-  m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
 --- !u!1 &574283444010623317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,7 +1077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 574283444010623318}
   m_Layer: 0
-  m_Name: Platforms
+  m_Name: Tiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1164,8 +1095,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 574283443854585369}
-  - {fileID: 574283443307536845}
   - {fileID: 574283442260705047}
   - {fileID: 574283444128956691}
   - {fileID: 574283442666442036}
@@ -1209,7 +1138,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574283444010623318}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &574283444128956776
 Tilemap:
@@ -1371,13 +1300,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
   _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
   _jumpMultiplier: 1
-  _buoyancyAcceleration: 0
-  _stepSound: {fileID: 0}
-  _landSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
+  buoyancySpeedAddon: 0
+  _stepSound:
+  - {fileID: 0}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 0}
 --- !u!1 &574283444202950449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,7 +1466,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574283444010623318}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &574283444275751457
 Tilemap:
@@ -1695,13 +1628,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 3
   _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
   _jumpMultiplier: 1
-  _buoyancyAcceleration: 0
-  _stepSound: {fileID: 0}
-  _landSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
+  buoyancySpeedAddon: 0
+  _stepSound:
+  - {fileID: 0}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 0}
 --- !u!1 &643909475349650353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,7 +1674,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574283444010623318}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &2208166531409600372
 Tilemap:
@@ -1899,10 +1836,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 4
   _speedMultiplier: 1
+  accelerationMultiplier: 0
+  _decelerationMultiplier: 0
   _jumpMultiplier: 1
-  _buoyancyAcceleration: 0
-  _stepSound: {fileID: 0}
-  _landSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
+  buoyancySpeedAddon: 0
+  _stepSound:
+  - {fileID: 0}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 0}
