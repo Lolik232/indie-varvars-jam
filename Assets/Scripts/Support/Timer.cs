@@ -8,7 +8,7 @@ public class Timer : ITrigger
     public bool Value { get; private set; }
     public float Time { get; }
 
-    public Timer(float time = 0)
+    public Timer(float time)
     {
         Value = false;
         Time = time;

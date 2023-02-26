@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4264375012773990200}
   - component: {fileID: 4264375012773990201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,13 +125,14 @@ GameObject:
   - component: {fileID: 4264375012884669585}
   - component: {fileID: 4264375012884669584}
   - component: {fileID: 4264375012884669586}
-  - component: {fileID: 4264375012884669587}
   - component: {fileID: 4264375012884669589}
   - component: {fileID: 4264375012884669590}
   - component: {fileID: 1786473752333639640}
   - component: {fileID: 4264375012884669591}
   - component: {fileID: 4544025900489176423}
-  m_Layer: 0
+  - component: {fileID: 991014166748876384}
+  - component: {fileID: 1936641548879850466}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,10 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8f28d7589d43ae825acdc7ff98c506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 4264375012884669587}
   _groundChecker: {fileID: 4264375012884669590}
   _leftWallChecker: {fileID: 4544025900489176423}
   _rightWallChecker: {fileID: 1786473752333639640}
+  _tileChecker: {fileID: 1936641548879850466}
   _ceilChecker: {fileID: 4264375012884669589}
   _rigidbody: {fileID: 4264375012884669586}
   _animator: {fileID: 4264375012884669591}
@@ -273,6 +274,20 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  _springFilter:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4096
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   _bushesFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -287,9 +302,16 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  _fallClamp: -40
-  _minFallSpeed: 80
-  _maxFallSpeed: 120
+  _cachedTile:
+    Collider: {fileID: 0}
+    SpeedMultiplier: 0
+    AccelerationMultiplier: 0
+    DecelerationMultiplier: 0
+    JumpMultiplier: 0
+    BuoyancyAcceleration: 0
+    Cached: 0
+    Info: {fileID: 0}
+  _failClamp: -40
   _groundedAcceleration: 80
   _groundedMoveClamp: 15
   _groundedDeceleration: 60
@@ -297,12 +319,16 @@ MonoBehaviour:
   _inAirMoveClamp: 20
   _inAirDeceleration: 90
   _apexBonus: 7
+  _dashVelocity: 40
+  _dashCooldownTime: 2
+  _dashTime: 0.1
+  _spriteRendererPrefab: {fileID: 0}
+  _dashSound: {fileID: 0}
   _jumpHeight: 40
   _jumpApexThreshold: 15
   _jumpEndEarlyGravityModifier: 3
   _coyoteTimeThreshold: 0.1
   _jumpBuffer: 0.1
-  _jumpDeltaTime: 0.2
   _totalJumps: 2
 --- !u!114 &4264375012884669585
 MonoBehaviour:
@@ -402,11 +428,35 @@ MonoBehaviour:
     m_ActionId: 2668b548-7004-43f4-a219-9c92d0bf554e
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4264375012884669599}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e72b1732-eef3-4970-b992-e948e406e00a
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4264375012884669599}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnUseItemInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7e06fb01-c281-44b0-84e8-febe1a3a869d
     m_ActionName: Player/UseItem[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 1
@@ -447,22 +497,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &4264375012884669587
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4264375012884669596}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
-  m_Size: {x: 1.2, y: 4}
-  m_Direction: 0
 --- !u!58 &4264375012884669589
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -567,6 +601,58 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 1}
   m_EdgeRadius: 0
+--- !u!61 &991014166748876384
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264375012884669596}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.25}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 6}
+    newSize: {x: 0.64, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 3.5}
+  m_EdgeRadius: 0
+--- !u!61 &1936641548879850466
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264375012884669596}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -2.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 6}
+    newSize: {x: 0.64, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &4264375013042669446
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4264375013042669447}
   - component: {fileID: 4264375013042669496}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,7 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4264375013263378275}
   - component: {fileID: 4264375013263378276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4264375013806516830}
   - component: {fileID: 4264375013806516831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4264375014033148421}
   - component: {fileID: 4264375014033148422}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,7 +1107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4264375014403968837}
   - component: {fileID: 4264375014403968838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

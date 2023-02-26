@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -27,7 +28,9 @@ public class AudioManager : MonoBehaviour
         );
     }
 
-    public static IEnumerator PlaySound(AudioClip clip)
+    public static void PlaySound(AudioClip clip) => CoroutineManager.StartRoutine(Play(clip));
+
+    private static IEnumerator Play(AudioClip clip)
     {
         var source = _pool.Get();
         source.clip = clip;
