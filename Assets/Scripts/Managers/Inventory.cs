@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static bool Chicken { get; private set; } = true;
+    public static bool Chicken { get; private set; }
 
     public static Inventory Instance { get; private set; }
 
@@ -24,6 +24,6 @@ public class Inventory : MonoBehaviour
     {
         if (!Chicken) return;
         ChickenUseEvent?.Invoke();
-        //Chicken = false;
+        Chicken = false;
     }
 }

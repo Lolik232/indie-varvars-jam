@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Health: MonoBehaviour
 {
-    public static int Hp { get; private set; }
+    public static int Hp { get; private set; } = 3;
 
-    public static Timer Protected = new Timer(1);
+    public static Timer Protected = new(1);
 
     public static Health Instance { get; private set; }
 
@@ -21,11 +21,13 @@ public class Health: MonoBehaviour
     public static void Heal()
     {
         if (Hp != 3) Hp++;
+        Debug.Log(Hp);
     }
 
     public static void TakeDamage()
     {
         Hp--;
+        Debug.Log(Hp);
         DamageEvent?.Invoke();
         Protected.Set();
         if (Hp == 0)

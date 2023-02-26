@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
             JumpDown = JumpDownTrigger,
             JumpUp = JumpUpTrigger,
-            
+
             UseItemDown = UseItemDownTrigger,
 
             DashX = _dashInput ? _moveInput.x : 0
@@ -109,17 +109,20 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    
 
 
     private void Awake()
     {
         Health.DamageEvent += () => { _animator.SetTrigger(Damaged); };
-        Inventory.ChickenUseEvent += () => { _flyTimer.Set();};
+        Inventory.ChickenUseEvent += () => { _flyTimer.Set(); };
         _dashTimer = new Timer(_dashTime);
         _flyTimer = new Timer(_flyTime);
         _dashCooldown = new Timer(_dashCooldownTime);
-        _dashTimer.ResetEvent += () => { _dashCooldown.Set(); };
+        _dashTimer.ResetEvent += () =>
+        {
+            _dashCooldown.Set();
+            _animator.SetBool(Dashed, false);
+        };
         _environmentFilter = new ContactFilter2D
         {
             useTriggers = true,
@@ -158,7 +161,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         // _currentYSpeed = Velocity.y;
 
         ApplyChickenFly();
-        
+
         if (_isFlying)
         {
             return;
@@ -318,6 +321,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         {
             case false when _flyTimer:
             {
+                _animator.SetBool(Chicken1, true);
                 _rigidbody.gravityScale = 0;
                 _collider.isTrigger = true;
                 _boundChecker.enabled = true;
@@ -330,6 +334,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
                 SetYVelocity(input.y * _flySpeed);
                 break;
             case true when _collider.OverlapCollider(_groundFilter, _colliderBuffer) == 0 && !_flyTimer:
+                _animator.SetBool(Chicken1, false);
                 _collider.isTrigger = false;
                 _isFlying = false;
                 _boundChecker.enabled = false;
@@ -394,6 +399,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     {
         if (_canDash && !_dashTimer && !_dashCooldown && Input.DashX != 0)
         {
+            _animator.SetBool(Dashed, true);
             _dashTimer.Set();
             _canDash = false;
             _facingLeft = Input.DashX < 0;
@@ -548,6 +554,8 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private bool _facingLeft;
     private static readonly int Damaged = Animator.StringToHash("damaged");
+    private static readonly int Dashed = Animator.StringToHash("dashed");
+    private static readonly int Chicken1 = Animator.StringToHash("chicken");
 
     private void UpdateAnimation()
     {
