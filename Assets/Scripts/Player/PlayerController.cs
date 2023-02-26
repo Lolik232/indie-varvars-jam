@@ -318,7 +318,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Fly
 
-    [Header("CHICKEH FLY")] [SerializeField]
+    [Header("CHICKEN FLY")] [SerializeField]
     private float _flyTime = 2f;
 
     [SerializeField] private float _flySpeed = 12f;
@@ -327,19 +327,24 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private void ApplyChickenFly()
     {
-        if (_flyTimer || _collider.GetContacts(_groundFilter, _colliderBuffer) > 0)
+        switch (_isFlying)
         {
-            _rigidbody.gravityScale = 0;
-            _collider.isTrigger = true;
-            var input = new Vector2(Input.X, Input.Y).normalized;
-            SetXVelocity(input.x * _flySpeed);
-            SetYVelocity(input.y * _flySpeed);
-            _isFlying = true;
-        }
-        else
-        {
-            _collider.isTrigger = false;
-            _isFlying = false;
+            case false when _flyTimer:
+            {
+                _rigidbody.gravityScale = 0;
+                _collider.isTrigger = true;
+                _isFlying = true;
+                break;
+            }
+            case true when _flyTimer || _collider.OverlapCollider(_groundFilter, _colliderBuffer) > 0:
+                var input = new Vector2(Input.X, Input.Y).normalized;
+                SetXVelocity(input.x * _flySpeed);
+                SetYVelocity(input.y * _flySpeed);
+                break;
+            case true when _collider.OverlapCollider(_groundFilter, _colliderBuffer) == 0 && !_flyTimer:
+                _collider.isTrigger = false;
+                _isFlying = false;
+                break;
         }
     }
 
@@ -425,11 +430,11 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
         sprite.transform.position = transform.position;
         sprite.enabled = true;
         var color = sprite.color;
-        sprite.color = new Color(color.r, color.g, color.b, 1);
+        sprite.color = new Color(color.r, color.g, color.b, 0.5f);
         for (var i = 0; i < 20; i++)
         {
             color = sprite.color;
-            sprite.color = new Color(color.r, color.g, color.b, color.a - 0.05f);
+            sprite.color = new Color(color.r, color.g, color.b, color.a - 0.025f);
             yield return null;
         }
 
