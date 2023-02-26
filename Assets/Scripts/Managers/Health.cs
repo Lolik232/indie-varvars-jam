@@ -10,6 +10,7 @@ public class Health: MonoBehaviour
     public static Health Instance { get; private set; }
 
     public static event Action KillEvent;
+    public static event Action DamageEvent;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class Health: MonoBehaviour
     public static void TakeDamage()
     {
         Hp--;
+        DamageEvent?.Invoke();
         Protected.Set();
         if (Hp == 0)
         {

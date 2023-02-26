@@ -104,17 +104,17 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     [SerializeField] private Collider2D _collider;
     [SerializeField] private Collider2D _groundChecker;
-    [SerializeField] private Collider2D _leftWallChecker;
-    [SerializeField] private Collider2D _rightWallChecker;
     [SerializeField] private Collider2D _tileChecker;
-    [SerializeField] private Collider2D _ceilChecker;
+    [SerializeField] private Collider2D _boundChecker;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    
 
 
     private void Awake()
     {
+        Health.DamageEvent += () => { _animator.SetTrigger(Damaged); };
         Inventory.ChickenUseEvent += () => { _flyTimer.Set();};
         _dashTimer = new Timer(_dashTime);
         _flyTimer = new Timer(_flyTime);
@@ -147,15 +147,6 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
         GatherInput();
         UpdateAnimation();
-
-        var color = _spriteRenderer.color;
-        _spriteRenderer.color = _groundChecker.IsTouchingLayers(_bushesFilter.layerMask)
-            ? new Color(color.r, color.g, color.b, 0.5f)
-            : new Color(color.r, color.g, color.b, 1f);
-
-        _spriteRenderer.color = Health.Protected
-            ? new Color(color.r, 0.3f, 0.3f, 0.3f)
-            : new Color(color.r, 1f, 1f, 1f);
     }
 
     private void FixedUpdate()
@@ -205,7 +196,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     private ContactFilter2D _environmentFilter;
 
-    private bool _collisionDown, _collisionUp, _collisionLeft, _collisionRight;
+    private bool _collisionDown;
 
     private float _timeLeftGrounded;
 
@@ -236,10 +227,6 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
             _canDash = true;
         }
-
-        _collisionUp = _ceilChecker.IsTouchingLayers(_groundFilter.layerMask);
-        _collisionLeft = _leftWallChecker.IsTouchingLayers(_groundFilter.layerMask);
-        _collisionRight = _rightWallChecker.IsTouchingLayers(_groundFilter.layerMask);
     }
 
     #endregion
@@ -333,6 +320,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
             {
                 _rigidbody.gravityScale = 0;
                 _collider.isTrigger = true;
+                _boundChecker.enabled = true;
                 _isFlying = true;
                 break;
             }
@@ -344,6 +332,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
             case true when _collider.OverlapCollider(_groundFilter, _colliderBuffer) == 0 && !_flyTimer:
                 _collider.isTrigger = false;
                 _isFlying = false;
+                _boundChecker.enabled = false;
                 break;
         }
     }
@@ -558,6 +547,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     private static readonly int InputX = Animator.StringToHash("inputX");
 
     private bool _facingLeft;
+    private static readonly int Damaged = Animator.StringToHash("damaged");
 
     private void UpdateAnimation()
     {
