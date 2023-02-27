@@ -24,7 +24,7 @@ public class Health: MonoBehaviour
         Debug.Log(Hp);
     }
 
-    public void RestoreHp()
+    public static void RestoreHp()
     {
         Hp = 3;
     }
