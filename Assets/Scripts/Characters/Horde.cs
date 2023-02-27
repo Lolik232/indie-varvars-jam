@@ -37,8 +37,9 @@ namespace Characters
             _timer.ResetEvent += Run;
             Room.PlayerEnterInRoom += (Room r) =>
             {
-               transform.position = new Vector3(transform.position.x, r.transform.position.y, transform.position.z);
+                Transform.position = new Vector3(Transform.position.x, r.transform.position.y, Transform.position.z);
             };
+            _timer.Set();
         }
 
         private void FixedUpdate()
