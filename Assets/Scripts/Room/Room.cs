@@ -8,6 +8,7 @@ using Vector3 = System.Numerics.Vector3;
 
 public class Room : MonoBehaviour
 {
+    public static event Action<Room> PlayerEnterInRoom;
     public static event Action<Room> PlayerLeaveRoom;
 
     #region Props
@@ -84,6 +85,7 @@ public class Room : MonoBehaviour
         {
             _enterCollider.isTrigger = false;
             PlayerInRoom             = true;
+            OnPlayerEnterInRoom();
 #if UNITY_EDITOR
             Debug.Log("Player in room");
 #endif
@@ -93,5 +95,10 @@ public class Room : MonoBehaviour
     private void OnPlayerLeaveRoom()
     {
         PlayerLeaveRoom?.Invoke(this);
+    }
+
+    private void OnPlayerEnterInRoom()
+    {
+        PlayerEnterInRoom?.Invoke(this);
     }
 }
