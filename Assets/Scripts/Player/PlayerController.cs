@@ -112,18 +112,30 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
 
+    private void DamageBool()
+    {
+        _animator.SetTrigger(Damaged);
+    }
+
+    private void FlySet()
+    {
+        _flyTimer.Set();
+    }
+
+    private void DashBool()
+    {
+        _dashCooldown.Set();
+        _animator.SetBool(Dashed, false);
+    }
+    
     private void Awake()
     {
-        Health.DamageEvent += () => { _animator.SetTrigger(Damaged); };
-        Inventory.ChickenUseEvent += () => { _flyTimer.Set(); };
+        Health.DamageEvent += DamageBool;
+        Inventory.ChickenUseEvent += FlySet;
         _dashTimer = new Timer(_dashTime);
         _flyTimer = new Timer(_flyTime);
         _dashCooldown = new Timer(_dashCooldownTime);
-        _dashTimer.ResetEvent += () =>
-        {
-            _dashCooldown.Set();
-            _animator.SetBool(Dashed, false);
-        };
+        _dashTimer.ResetEvent += DashBool;
         _environmentFilter = new ContactFilter2D
         {
             useTriggers = true,
@@ -138,6 +150,13 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
             source => { Destroy(source.gameObject); },
             false, 5, 15
         );
+    }
+
+    private void OnDestroy()
+    {
+        Health.DamageEvent -= DamageBool;
+        Inventory.ChickenUseEvent -= FlySet;
+        _dashTimer.ResetEvent -= DashBool;
     }
 
     private void Start()
