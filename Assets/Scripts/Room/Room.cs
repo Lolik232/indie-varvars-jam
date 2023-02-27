@@ -8,6 +8,8 @@ using Vector3 = System.Numerics.Vector3;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] private PlayerController _player;
+
     public static event Action<Room> PlayerEnterInRoom;
     public static event Action<Room> PlayerLeaveRoom;
 
@@ -50,8 +52,15 @@ public class Room : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _player = FindObjectOfType<PlayerController>();
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.gameObject.layer != _player.gameObject.layer) return;
+        
         if (!PlayerInRoom) return;
 
         if (other.IsTouching(_roomCollider) == false &&
@@ -78,6 +87,8 @@ public class Room : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (other.gameObject.layer != _player.gameObject.layer) return;
+
         if (PlayerInRoom) return;
 
         if (other.IsTouching(_roomCollider) &&

@@ -26,12 +26,17 @@ namespace Characters
 
         #endregion
 
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.layer == _player.gameObject.layer) Health.Kill();
+        }
+
         private void Awake()
         {
             Transform = GetComponent<Transform>();
             _player   = FindObjectOfType<PlayerController>();
         }
-        
+
 
         private void OnEnable()
         {
