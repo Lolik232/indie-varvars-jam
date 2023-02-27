@@ -13,13 +13,15 @@ public class Inventory : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        Room.PlayerLeaveRoom += (Room) => { Chicken = false; };
     }
 
     public static void PickChicken()
     {
         Chicken = true;
     }
-    
+
     public static void UseChicken()
     {
         if (!Chicken) return;
