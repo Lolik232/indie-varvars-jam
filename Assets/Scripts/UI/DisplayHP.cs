@@ -18,6 +18,7 @@ public class DisplayHP : MonoBehaviour
 
     private void Start()
     {
+        Health.RestoreHp();
         img.sprite = sprites[0];
         Health.KillEvent += Load;
     }
