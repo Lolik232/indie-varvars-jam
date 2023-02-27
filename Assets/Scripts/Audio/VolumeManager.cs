@@ -12,11 +12,19 @@ public class VolumeManager : MonoBehaviour
     [SerializeField] private Slider fxSlider;
     [SerializeField] private AudioMixerGroup mixer;
 
+    [SerializeField] private AudioMixerSnapshot normal;
+    [SerializeField] private AudioMixerSnapshot menu;
+
     private void Start()
     {
         gameSlider.value = PlayerPrefs.GetFloat("GameVolume", 1f);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
         fxSlider.value = PlayerPrefs.GetFloat("FXVolume", 1f);
+    }
+
+    private void OnDestroy()
+    {
+        OnInGameMenuExit();
     }
 
     private void ChangeVolume(string name, float volume)
@@ -27,7 +35,17 @@ public class VolumeManager : MonoBehaviour
 
     private static float SqrtInterpolation(float a, float b, float t)
     {
-        return a + (b - a) * (float)Math.Pow(t, 1.0 / 6.0);
+        return a + (b - a) * (float)Math.Pow(t, 1.0 / 4.0);
+    }
+
+    public void OnInGameMenuEnter()
+    { 
+        menu.TransitionTo(0.3f);
+    }
+
+    public void OnInGameMenuExit()
+    {
+        normal.TransitionTo(0.3f);
     }
 
     public void OnGameSlider(float volume)

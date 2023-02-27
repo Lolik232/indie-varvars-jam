@@ -22,7 +22,7 @@ public class Chicken : MonoBehaviour
 
     private void OnPickup()
     {
-        Health.Heal();
+        Inventory.PickChicken();
         if (_clip != null)
         {
             AudioManager.PlaySound(_clip);

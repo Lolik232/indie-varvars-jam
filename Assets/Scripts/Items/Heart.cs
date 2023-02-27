@@ -22,6 +22,8 @@ public class Heart : MonoBehaviour
 
     private void OnPickup()
     {
+        if (Health.Hp == 3) return;
+        
         Health.Heal();
         if (_clip != null)
         {
