@@ -94,7 +94,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: d5e04dc121800fb449f11ec1895a090f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clip: {fileID: 8300000, guid: 63e5c6a561e321a45b21fececf506f60, type: 3}
-  _pickupChecker: {fileID: 0}
+  _pickupChecker: {fileID: 3103192401755591197}
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
