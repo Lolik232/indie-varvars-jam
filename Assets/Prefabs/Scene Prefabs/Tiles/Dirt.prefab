@@ -179,9 +179,8 @@ MonoBehaviour:
   _jumpMultiplier: 0.8
   buoyancyAcceleration: 0
   _stepSound:
-  - {fileID: 8300000, guid: d5bf99351683ab24bb34c53efe08b8e5, type: 3}
-  - {fileID: 8300000, guid: 8adef30195ac95e428ff25e77a782d28, type: 3}
-  - {fileID: 8300000, guid: 322894a0b6f190c49b60d031400904be, type: 3}
+  - {fileID: 8300000, guid: 21ca5dc670dfff244bbcd43f7419f392, type: 3}
+  - {fileID: 8300000, guid: cf3eed52b566b7a48ae31c732888a5da, type: 3}
   _landSound:
   - {fileID: 0}
   _jumpSound:
