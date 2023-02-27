@@ -8,6 +8,8 @@ namespace Game
 {
     public class RoomSelector : MonoBehaviour
     {
+        private System.Random rand = new System.Random();
+
         [SerializeField] private Room[] Up;
         [SerializeField] private Room[] UpChangeDirection;
 
@@ -22,7 +24,6 @@ namespace Game
 
         private Room GetRandomRoom(List<Room> selection)
         {
-            var rand  = new System.Random();
             var index = rand.Next(0, selection.Count);
             return selection[index];
         }

@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
 
     #region Unity
 
+    [SerializeField] private ParticleSystem _dust;
     [SerializeField] private Collider2D _collider;
     [SerializeField] private Collider2D _groundChecker;
     [SerializeField] private Collider2D _tileChecker;
@@ -111,18 +112,30 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
 
+    private void DamageBool()
+    {
+        _animator.SetTrigger(Damaged);
+    }
+
+    private void FlySet()
+    {
+        _flyTimer.Set();
+    }
+
+    private void DashBool()
+    {
+        _dashCooldown.Set();
+        _animator.SetBool(Dashed, false);
+    }
+    
     private void Awake()
     {
-        Health.DamageEvent += () => { _animator.SetTrigger(Damaged); };
-        Inventory.ChickenUseEvent += () => { _flyTimer.Set(); };
+        Health.DamageEvent += DamageBool;
+        Inventory.ChickenUseEvent += FlySet;
         _dashTimer = new Timer(_dashTime);
         _flyTimer = new Timer(_flyTime);
         _dashCooldown = new Timer(_dashCooldownTime);
-        _dashTimer.ResetEvent += () =>
-        {
-            _dashCooldown.Set();
-            _animator.SetBool(Dashed, false);
-        };
+        _dashTimer.ResetEvent += DashBool;
         _environmentFilter = new ContactFilter2D
         {
             useTriggers = true,
@@ -137,6 +150,13 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
             source => { Destroy(source.gameObject); },
             false, 5, 15
         );
+    }
+
+    private void OnDestroy()
+    {
+        Health.DamageEvent -= DamageBool;
+        Inventory.ChickenUseEvent -= FlySet;
+        _dashTimer.ResetEvent -= DashBool;
     }
 
     private void Start()
@@ -422,15 +442,15 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     {
         var sprite = _pool.Get();
         sprite.sprite = _spriteRenderer.sprite;
-        sprite.transform.position = transform.position;
+        sprite.transform.position = _spriteRenderer.transform.position;
         sprite.enabled = true;
         var color = sprite.color;
         sprite.color = new Color(color.r, color.g, color.b, 0.5f);
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < 10; i++)
         {
             color = sprite.color;
-            sprite.color = new Color(color.r, color.g, color.b, color.a - 0.025f);
-            yield return null;
+            sprite.color = new Color(color.r, color.g, color.b, color.a - 0.05f);
+            yield return Utility.GetWait(0.05f);
         }
 
         _pool.Release(sprite);
@@ -476,6 +496,7 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     {
         if (HasBufferedJump && CanJump)
         {
+            _dust.Play();
             _jumpBufferTimer.Reset();
             PlayJumpSound();
             SetYVelocity(_jumpHeight * TileJumpMultiplier);

@@ -8,8 +8,10 @@ using Vector3 = System.Numerics.Vector3;
 
 public class Room : MonoBehaviour
 {
-    public static event Action PlayerLeaveRoom;
+    [SerializeField] private PlayerController _player;
 
+    public static event Action<Room> PlayerEnterInRoom;
+    public static event Action<Room> PlayerLeaveRoom;
 
     #region Props
 
@@ -50,8 +52,15 @@ public class Room : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _player = FindObjectOfType<PlayerController>();
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.gameObject.layer != _player.gameObject.layer) return;
+        
         if (!PlayerInRoom) return;
 
         if (other.IsTouching(_roomCollider) == false &&
@@ -60,9 +69,9 @@ public class Room : MonoBehaviour
         {
             _outCollier.isTrigger = false;
             PlayerInRoom          = false;
+            OnPlayerLeaveRoom();
 #if UNITY_EDITOR
             Debug.Log("Player leave room");
-            OnPlayerLeaveRoom();
 #endif
         }
     }
@@ -78,6 +87,8 @@ public class Room : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (other.gameObject.layer != _player.gameObject.layer) return;
+
         if (PlayerInRoom) return;
 
         if (other.IsTouching(_roomCollider) &&
@@ -85,14 +96,20 @@ public class Room : MonoBehaviour
         {
             _enterCollider.isTrigger = false;
             PlayerInRoom             = true;
+            OnPlayerEnterInRoom();
 #if UNITY_EDITOR
             Debug.Log("Player in room");
 #endif
         }
     }
 
-    private static void OnPlayerLeaveRoom()
+    private void OnPlayerLeaveRoom()
     {
-        PlayerLeaveRoom?.Invoke();
+        PlayerLeaveRoom?.Invoke(this);
+    }
+
+    private void OnPlayerEnterInRoom()
+    {
+        PlayerEnterInRoom?.Invoke(this);
     }
 }

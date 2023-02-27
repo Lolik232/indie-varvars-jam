@@ -9,17 +9,29 @@ public class Inventory : MonoBehaviour
 
     public static event Action ChickenUseEvent;
 
+    private void DropChicken(Room room)
+    {
+        Chicken = false;
+    }
+    
     private void Awake()
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        Room.PlayerLeaveRoom += DropChicken;
+    }
+
+    private void OnDestroy()
+    {
+        Room.PlayerLeaveRoom -= DropChicken;
     }
 
     public static void PickChicken()
     {
         Chicken = true;
     }
-    
+
     public static void UseChicken()
     {
         if (!Chicken) return;
