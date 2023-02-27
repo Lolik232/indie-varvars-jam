@@ -6,7 +6,7 @@ namespace Characters
 {
     public class Horde : MonoBehaviour
     {
-        [SerializeField] private float _speed = 2f;
+        [SerializeField] private float _speed = 0.13f;
 
         private Timer _timer      = new Timer(2f);
         private bool  _runStarted = false;
@@ -29,16 +29,18 @@ namespace Characters
         private void Awake()
         {
             Transform = GetComponent<Transform>();
+            _player   = FindObjectOfType<PlayerController>();
         }
-
+        
 
         private void OnEnable()
         {
             _timer.ResetEvent += Run;
             Room.PlayerEnterInRoom += (Room r) =>
             {
-               transform.position = new Vector3(transform.position.x, r.transform.position.y, transform.position.z);
+                Transform.position = new Vector3(Transform.position.x, r.transform.position.y, Transform.position.z);
             };
+            _timer.Set();
         }
 
         private void FixedUpdate()
