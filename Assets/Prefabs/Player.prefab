@@ -5037,15 +5037,15 @@ MonoBehaviour:
     BuoyancyAcceleration: 0
     Cached: 0
     Info: {fileID: 0}
-  _failClamp: -40
+  _failClamp: -25
   _flyTime: 2
   _flySpeed: 12
-  _groundedAcceleration: 80
+  _groundedAcceleration: 50
   _groundedMoveClamp: 7
-  _groundedDeceleration: 60
-  _inAirAcceleration: 120
+  _groundedDeceleration: 30
+  _inAirAcceleration: 80
   _inAirMoveClamp: 15
-  _inAirDeceleration: 90
+  _inAirDeceleration: 60
   _apexBonus: 4
   _dashVelocity: 40
   _dashCooldownTime: 1

@@ -423,15 +423,15 @@ public class PlayerController : MonoBehaviour, IPlayerController, IActivated
     {
         var sprite = _pool.Get();
         sprite.sprite = _spriteRenderer.sprite;
-        sprite.transform.position = transform.position;
+        sprite.transform.position = _spriteRenderer.transform.position;
         sprite.enabled = true;
         var color = sprite.color;
         sprite.color = new Color(color.r, color.g, color.b, 0.5f);
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < 10; i++)
         {
             color = sprite.color;
-            sprite.color = new Color(color.r, color.g, color.b, color.a - 0.025f);
-            yield return null;
+            sprite.color = new Color(color.r, color.g, color.b, color.a - 0.05f);
+            yield return Utility.GetWait(0.05f);
         }
 
         _pool.Release(sprite);
