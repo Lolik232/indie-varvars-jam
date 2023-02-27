@@ -37,15 +37,22 @@ namespace Characters
             _player   = FindObjectOfType<PlayerController>();
         }
 
+        private void Hui(Room r)
+        {
+            Transform.position = new Vector3(Transform.position.x, r.transform.position.y, Transform.position.z);
+        }
+        
 
         private void OnEnable()
         {
             _timer.ResetEvent += Run;
-            Room.PlayerEnterInRoom += (Room r) =>
-            {
-                Transform.position = new Vector3(Transform.position.x, r.transform.position.y, Transform.position.z);
-            };
+            Room.PlayerEnterInRoom += Hui;
             _timer.Set();
+        }
+
+        private void OnDisable()
+        {
+            Room.PlayerEnterInRoom -= Hui;
         }
 
         private void FixedUpdate()
