@@ -34,6 +34,7 @@ Transform:
   - {fileID: 851675881589573670}
   - {fileID: 6770868852971999574}
   - {fileID: 526923751683143073}
+  - {fileID: 4710313874117835186}
   m_Father: {fileID: 851675882149686490}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -383,7 +384,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -107268147
-  m_SortingLayer: -6
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -547,6 +548,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4315572888905905504, guid: 241c4b6c4d58dbc428812519590be21a, type: 3}
   m_PrefabInstance: {fileID: 3472904365753276025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4473796370091741347
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 851675881309963100}
+    m_Modifications:
+    - target: {fileID: 9171716548730235152, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_Name
+      value: Dirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+--- !u!4 &4710313874117835186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9171716548730235153, guid: af9ec445f15e4b64ab37575b55d6dcbd, type: 3}
+  m_PrefabInstance: {fileID: 4473796370091741347}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4862469634470486737
 PrefabInstance:
@@ -1032,6 +1095,10 @@ PrefabInstance:
     - target: {fileID: 2663355158595642252, guid: 0663434bfe55d7e42b27c395c61cecf3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667896308511023074, guid: 0663434bfe55d7e42b27c395c61cecf3, type: 3}
+      propertyPath: m_UsedByComposite
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063203374107315041, guid: 0663434bfe55d7e42b27c395c61cecf3, type: 3}
       propertyPath: m_Name

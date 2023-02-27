@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4315572888905905508}
   - component: {fileID: 4315572888905905509}
   - component: {fileID: 4315572888905905510}
-  - component: {fileID: 4315572888905905511}
   - component: {fileID: 7162818109886543924}
+  - component: {fileID: 8369312097416405323}
   m_Layer: 3
   m_Name: Snow
   m_TagString: Untagged
@@ -114,7 +114,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 454983365
-  m_SortingLayer: -5
+  m_SortingLayer: -6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -161,7 +161,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &4315572888905905511
+--- !u!114 &7162818109886543924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4315572888905905505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedMultiplier: 0.8
+  accelerationMultiplier: 0.8
+  _decelerationMultiplier: 3
+  _jumpMultiplier: 0.8
+  buoyancyAcceleration: 0
+  _stepSound:
+  - {fileID: 8300000, guid: d5bf99351683ab24bb34c53efe08b8e5, type: 3}
+  - {fileID: 8300000, guid: 8adef30195ac95e428ff25e77a782d28, type: 3}
+  - {fileID: 8300000, guid: 322894a0b6f190c49b60d031400904be, type: 3}
+  _landSound:
+  - {fileID: 0}
+  _jumpSound:
+  - {fileID: 8300000, guid: d6e9e9e8c21a6e24aabd657b4e298c91, type: 3}
+  - {fileID: 8300000, guid: 02611b28885e08c4c9d26ecf0441e293, type: 3}
+  - {fileID: 8300000, guid: 7bf894889b0fb744aaba37ebc9aed19a, type: 3}
+--- !u!66 &8369312097416405323
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,30 +212,3 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &7162818109886543924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4315572888905905505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fada702c5b879ce4c881c73e9a1cb6de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speedMultiplier: 0.9
-  accelerationMultiplier: 0.8
-  _decelerationMultiplier: 1.6
-  _jumpMultiplier: 0.9
-  buoyancyAcceleration: 0
-  _stepSound:
-  - {fileID: 8300000, guid: d5bf99351683ab24bb34c53efe08b8e5, type: 3}
-  - {fileID: 8300000, guid: 8adef30195ac95e428ff25e77a782d28, type: 3}
-  - {fileID: 8300000, guid: 322894a0b6f190c49b60d031400904be, type: 3}
-  _landSound:
-  - {fileID: 0}
-  _jumpSound:
-  - {fileID: 8300000, guid: d6e9e9e8c21a6e24aabd657b4e298c91, type: 3}
-  - {fileID: 8300000, guid: 02611b28885e08c4c9d26ecf0441e293, type: 3}
-  - {fileID: 8300000, guid: 7bf894889b0fb744aaba37ebc9aed19a, type: 3}
