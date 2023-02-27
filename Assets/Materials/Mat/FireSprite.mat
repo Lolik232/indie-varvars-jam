@@ -39,5 +39,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _FlameColor: {r: 1, g: 0.5430123, b: 0, a: 0}
+    - _FlameColor: {r: 0.5, g: 0.27058825, b: 0, a: 0}
   m_BuildTextureStacks: []

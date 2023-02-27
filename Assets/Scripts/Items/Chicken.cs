@@ -22,6 +22,8 @@ public class Chicken : MonoBehaviour
 
     private void OnPickup()
     {
+        if (Inventory.Chicken) return;
+        
         Inventory.PickChicken();
         if (_clip != null)
         {
