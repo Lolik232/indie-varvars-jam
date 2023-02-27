@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5485146971040570216}
   - component: {fileID: 5485146971040570217}
   - component: {fileID: 5485146971040570218}
-  - component: {fileID: 5485146971040570219}
   - component: {fileID: 8834611922974371792}
+  - component: {fileID: 5346279628452136112}
   m_Layer: 3
   m_Name: Ice
   m_TagString: Untagged
@@ -138,7 +138,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 454983365
-  m_SortingLayer: -5
+  m_SortingLayer: -6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -185,30 +185,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &5485146971040570219
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5485146971040570133}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 5485146971040570217}
-    m_ColliderPaths: []
-  m_CompositePaths:
-    m_Paths: []
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
 --- !u!114 &8834611922974371792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +212,51 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d6e9e9e8c21a6e24aabd657b4e298c91, type: 3}
   - {fileID: 8300000, guid: 02611b28885e08c4c9d26ecf0441e293, type: 3}
   - {fileID: 8300000, guid: 7bf894889b0fb744aaba37ebc9aed19a, type: 3}
+--- !u!66 &5346279628452136112
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485146971040570133}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 5485146971040570217}
+    m_ColliderPaths:
+    - - X: 150000000
+        Y: 40000000
+      - X: 196875008
+        Y: 40000000
+      - X: 199375008
+        Y: 41250000
+      - X: 200000000
+        Y: 42187500
+      - X: 199687504
+        Y: 44375000
+      - X: 200000000
+        Y: 45625000
+      - X: 200000000
+        Y: 50000000
+      - X: 150000000
+        Y: 50000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 19.687494, y: 4}
+      - {x: 19.937504, y: 4.1250057}
+      - {x: 19.999998, y: 4.2187595}
+      - {x: 19.968752, y: 4.437505}
+      - {x: 20, y: 4.562503}
+      - {x: 19.999971, y: 5}
+      - {x: 15, y: 4.999971}
+      - {x: 15.000029, y: 4}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
