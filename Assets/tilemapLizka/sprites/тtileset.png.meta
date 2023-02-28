@@ -1,0 +1,2981 @@
+fileFormatVersion: 2
+guid: 3cf32c6127d84a7409cdaf4db7d68a09
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u0442tileset_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -4, y: 16}
+        - {x: -7, y: 15}
+        - {x: -10, y: 15}
+        - {x: -13, y: 13}
+        - {x: -16, y: 10}
+        - {x: -16, y: 2}
+        - {x: -14, y: 0}
+        - {x: -13, y: -3}
+        - {x: -8, y: -6}
+        - {x: -4, y: -7}
+        - {x: 0, y: -12}
+        - {x: 2, y: -13}
+        - {x: 5, y: -14}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 8f38c4dc239338943abe210c9153fb8e
+      internalID: 579902100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_1"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831ece7dcb49de44391538e0a4afb1f6
+      internalID: 694109713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_2"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 14, y: 12}
+        - {x: 12, y: 14}
+        - {x: 7, y: 15}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: -4, y: -14}
+        - {x: 1, y: -11}
+        - {x: 5, y: -7}
+        - {x: 11, y: -4}
+        - {x: 16, y: 0}
+        - {x: 16, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 377759fca4ff04842b032d67af370b96
+      internalID: 706560437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_3"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -4, y: 16}
+        - {x: -7, y: 15}
+        - {x: -10, y: 15}
+        - {x: -13, y: 13}
+        - {x: -16, y: 10}
+        - {x: -16, y: 2}
+        - {x: -14, y: 0}
+        - {x: -13, y: -3}
+        - {x: -8, y: -6}
+        - {x: -4, y: -7}
+        - {x: 0, y: -12}
+        - {x: 2, y: -13}
+        - {x: 5, y: -14}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd23e7c7a47cbf44a90f81abc3b29a3
+      internalID: -1673617988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_4"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbeb2f087eaa2bf45a59045ab21c7782
+      internalID: -1868851479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_5"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 14, y: 12}
+        - {x: 12, y: 14}
+        - {x: 7, y: 15}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: -4, y: -14}
+        - {x: 1, y: -11}
+        - {x: 5, y: -7}
+        - {x: 11, y: -4}
+        - {x: 16, y: 0}
+        - {x: 16, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b266dc936677d7645a195a31bb90462a
+      internalID: 1473132139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_6"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -4, y: 16}
+        - {x: -7, y: 15}
+        - {x: -10, y: 15}
+        - {x: -13, y: 13}
+        - {x: -16, y: 10}
+        - {x: -16, y: 2}
+        - {x: -16, y: -1}
+        - {x: -13, y: -3}
+        - {x: -8, y: -6}
+        - {x: -4, y: -7}
+        - {x: 0, y: -12}
+        - {x: 2, y: -13}
+        - {x: 5, y: -14}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d9408d29b7d2346ba3d540adef3fcb
+      internalID: 1755189421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_7"
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d81e4e27d68df34bb694f4d274ce356
+      internalID: -2128410102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_8"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 14, y: 12}
+        - {x: 12, y: 14}
+        - {x: 7, y: 15}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: -4, y: -14}
+        - {x: 1, y: -11}
+        - {x: 5, y: -7}
+        - {x: 11, y: -4}
+        - {x: 16, y: 0}
+        - {x: 16, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d94225aafd59e4546887d0607beb04d5
+      internalID: -2051039105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_9"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 16}
+        - {x: -4, y: 6}
+        - {x: 1, y: 0}
+        - {x: 5, y: -1}
+        - {x: 9, y: -5}
+        - {x: 13, y: -7}
+        - {x: 16, y: -7}
+        - {x: 16, y: 16}
+      - - {x: -4, y: 6}
+        - {x: -4, y: 6}
+        - {x: -4, y: 6}
+        - {x: -4, y: 6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf48b133ec4f1af40976707c01893763
+      internalID: 1026081810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_10"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -7}
+        - {x: -9, y: -9}
+        - {x: 14, y: -9}
+        - {x: 16, y: -7}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e400e9015d26af4eb07bfeed9c1be85
+      internalID: 1828209786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_11"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -8}
+        - {x: -15, y: -8}
+        - {x: -2, y: 0}
+        - {x: 9, y: 14}
+        - {x: 11, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b0f3e15a9532a8429cc3f20ab88bed4
+      internalID: -948251618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_12"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: 16}
+        - {x: -7, y: 15}
+        - {x: -12, y: 14}
+        - {x: -14, y: 13}
+        - {x: -16, y: 9}
+        - {x: -16, y: -3.47937}
+        - {x: -15, y: -6}
+        - {x: -15, y: -10}
+        - {x: -14, y: -13}
+        - {x: -13, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90dd2d7bf3cd45c4a833a87bc8848299
+      internalID: 1131529892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_13"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a45da1f5d41ab347925d2ce8758212f
+      internalID: 607756655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_14"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 15}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: -13}
+        - {x: 15, y: -5}
+        - {x: 16, y: -3}
+        - {x: 16, y: 5}
+        - {x: 16, y: 10}
+        - {x: 15, y: 12}
+        - {x: 13, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5995ff95f3bdee7488bf00ad4db88838
+      internalID: -460806510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_15"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: 16}
+        - {x: -7, y: 15}
+        - {x: -12, y: 14}
+        - {x: -14, y: 13}
+        - {x: -16, y: 9}
+        - {x: -16, y: -3.47937}
+        - {x: -16, y: -6}
+        - {x: -15, y: -10}
+        - {x: -14, y: -13}
+        - {x: -13, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b438ad3c3b87c4b4eb0b49c30d0911b1
+      internalID: -1022306022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_16"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7027299b21802a47a00c27d8f890ae4
+      internalID: 830025387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_17"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 15}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: -13}
+        - {x: 15, y: -5}
+        - {x: 16, y: -3}
+        - {x: 16, y: 5}
+        - {x: 16, y: 10}
+        - {x: 15, y: 12}
+        - {x: 13, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a0bd76566c85e245b550fa3bdac8bf5
+      internalID: -1826990050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_18"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: 16}
+        - {x: -7, y: 15}
+        - {x: -12, y: 14}
+        - {x: -14, y: 13}
+        - {x: -16, y: 9}
+        - {x: -16, y: -3.47937}
+        - {x: -15, y: -6}
+        - {x: -15, y: -10}
+        - {x: -14, y: -13}
+        - {x: -13, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e63f5351e31e154097c29194ee4e20b
+      internalID: -705424002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_19"
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f9dd498739b59342bb8fad6d00ed808
+      internalID: 566271915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_20"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 15}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: -13}
+        - {x: 15, y: -5}
+        - {x: 16, y: -3}
+        - {x: 16, y: 5}
+        - {x: 16, y: 10}
+        - {x: 15, y: 12}
+        - {x: 13, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58605fa0e77758546971af7413ce1ab1
+      internalID: -2024949680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_21"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: 4}
+        - {x: -12, y: -2}
+        - {x: -10, y: -4}
+        - {x: -8, y: -5}
+        - {x: -3, y: -7}
+        - {x: -2, y: -9}
+        - {x: -1, y: -10}
+        - {x: 1, y: -12}
+        - {x: 3, y: -13}
+        - {x: 6, y: -14}
+        - {x: 11, y: -15}
+        - {x: 16, y: -16}
+        - {x: 16, y: -6}
+        - {x: 12, y: -5}
+        - {x: 9, y: -3}
+        - {x: 2, y: 2}
+        - {x: -2, y: 8}
+        - {x: -4, y: 13}
+        - {x: -7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd69d312dff09e440b49f31cacef6dce
+      internalID: -895271293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_22"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: -8}
+        - {x: 2, y: -8}
+        - {x: -11, y: -8}
+        - {x: -16, y: -6}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c31490e536192a4fb7b05a9ce181d93
+      internalID: 1378269228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_23"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 16}
+        - {x: 4, y: 8}
+        - {x: -1, y: 3}
+        - {x: -7, y: -2}
+        - {x: -11, y: -4}
+        - {x: -16, y: -6}
+        - {x: -16, y: -15}
+        - {x: -10, y: -15}
+        - {x: -2, y: -13}
+        - {x: 2, y: -9}
+        - {x: 7, y: -4}
+        - {x: 10, y: -4}
+        - {x: 13, y: -2}
+        - {x: 16, y: 4}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a442cf82155f0d44ca32af44a1b96fcc
+      internalID: 316410117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_24"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 15}
+        - {x: -14, y: 13}
+        - {x: -14, y: 5}
+        - {x: -14, y: -10}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ca3bec4a4b44843aab88721a193114
+      internalID: -1329966290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_25"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b755783db5c9c114abd4e472fd9e3e80
+      internalID: -1487556215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_26"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 13, y: -13}
+        - {x: 12, y: -10}
+        - {x: 15, y: -4}
+        - {x: 14, y: 3}
+        - {x: 15, y: 13}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe86984b66164b64695ed03445a57b3d
+      internalID: 1070010111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_27"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 14}
+        - {x: -16, y: 11}
+        - {x: -16, y: 0}
+        - {x: -16, y: -5}
+        - {x: -14, y: -6}
+        - {x: -14, y: -14}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: -5}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1530037fbe7ad64469f650756ee1dac0
+      internalID: -1026574930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_28"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 11, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 14}
+        - {x: -16, y: 11}
+        - {x: -16, y: -1}
+        - {x: -16, y: -4}
+        - {x: -14, y: -11}
+        - {x: -11, y: -14}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 12, y: -14}
+        - {x: 14, y: -11}
+        - {x: 15, y: -2}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: edbfa352e07d1c64ab214c2869908a4b
+      internalID: 636042620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_29"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 11, y: 16}
+        - {x: -13, y: 16}
+        - {x: -15, y: 15}
+        - {x: -16, y: 12}
+        - {x: -16, y: 0}
+        - {x: -13, y: -4}
+        - {x: -9, y: -8}
+        - {x: -5, y: -11}
+        - {x: 2, y: -11}
+        - {x: 5, y: -10}
+        - {x: 14, y: -2}
+        - {x: 16, y: 1}
+        - {x: 16, y: 13}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ca35f84c40b5345965c4f42e6abc31
+      internalID: 1081541804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_30"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 14}
+        - {x: -16, y: 11}
+        - {x: -16, y: 0}
+        - {x: -16, y: -5}
+        - {x: -14, y: -6}
+        - {x: -14, y: -14}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: -5}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78058b14d5aa07e448a779387451979a
+      internalID: 435283461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_31"
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 11, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 14}
+        - {x: -16, y: 11}
+        - {x: -16, y: -1}
+        - {x: -16, y: -4}
+        - {x: -14, y: -11}
+        - {x: -11, y: -14}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 12, y: -14}
+        - {x: 14, y: -11}
+        - {x: 15, y: -2}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a4f53cab1c794448bb714cba135bf13
+      internalID: -2005733716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_32"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 11, y: 16}
+        - {x: -13, y: 16}
+        - {x: -15, y: 15}
+        - {x: -16, y: 12}
+        - {x: -16, y: 0}
+        - {x: -13, y: -4}
+        - {x: -9, y: -8}
+        - {x: -5, y: -11}
+        - {x: 2, y: -11}
+        - {x: 5, y: -10}
+        - {x: 14, y: -2}
+        - {x: 16, y: 1}
+        - {x: 16, y: 13}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b9d07cadf312784c863b8c4bd2799db
+      internalID: -557114322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_33"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: 2}
+        - {x: -15, y: -1}
+        - {x: -15, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d6a9bef33cdbec42b86e6f0cf46259d
+      internalID: -2089781656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_34"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cef0dd2970a0954e996b08c298b8a82
+      internalID: -1868098153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_35"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 15, y: -13}
+        - {x: 16, y: -7}
+        - {x: 15, y: -2}
+        - {x: 16, y: 3}
+        - {x: 16, y: 9.1102295}
+        - {x: 15, y: 14}
+        - {x: 15, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc6dcb0ba53bd7743b568ac7385776ab
+      internalID: 2066027709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_36"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 16}
+        - {x: -13, y: -11}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95219208b5167474487587af43ba6b97
+      internalID: 1883667566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_37"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca0b13a37d076e947bf71d3a6e249c0b
+      internalID: 1276887710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_38"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 9, y: -16}
+        - {x: 13, y: -11}
+        - {x: 14, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b21e05c67540c469a36ca3747652c1
+      internalID: 2071154465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_39"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 13}
+        - {x: -16, y: 10}
+        - {x: -16, y: -9}
+        - {x: -15, y: -11}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67dc5be0cf48ae84b86c596552de54a7
+      internalID: 325999096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_40"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ebeea06f5c019b43b70a10f8b8cd63a
+      internalID: 877756600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_41"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 9, y: -16}
+        - {x: 15, y: -11}
+        - {x: 16, y: -7}
+        - {x: 16, y: 12}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c3ad8bdbeea8734398fabc5046c988d
+      internalID: 2005841188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_42"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 13}
+        - {x: -16, y: 10}
+        - {x: -16, y: -9}
+        - {x: -15, y: -11}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: af31dc2b6db1a914484288ee5c0a3f03
+      internalID: 1562524565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_43"
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ef0d7ecb3eacbc4ea01fa461c47cb2f
+      internalID: -2126311354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_44"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 9, y: -16}
+        - {x: 15, y: -11}
+        - {x: 16, y: -7}
+        - {x: 16, y: 12}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcbda0a7be86c424b8c1e47c63538577
+      internalID: 1744776805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_45"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 11, y: 16}
+        - {x: -12, y: 16}
+        - {x: -15, y: 15}
+        - {x: -16, y: 11}
+        - {x: -16, y: -1}
+        - {x: -16, y: -4}
+        - {x: -14, y: -11}
+        - {x: -11, y: -14}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 12, y: -14}
+        - {x: 14, y: -11}
+        - {x: 15, y: -2}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 15, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7528468bcbc76e34ea2201da3079dc13
+      internalID: -1419138046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_46"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 14}
+        - {x: -16, y: 11}
+        - {x: -16, y: 0}
+        - {x: -16, y: -5}
+        - {x: -14, y: -6}
+        - {x: -14, y: -14}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: -5}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d3e097696f29234fab47500f4c27f0c
+      internalID: 436658779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_47"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca014a6d4a89bc48b4ca0acb864696d
+      internalID: -1898294404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_48"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 14}
+        - {x: -16, y: 11}
+        - {x: -16, y: 0}
+        - {x: -14, y: -2}
+        - {x: -14, y: -14}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: -3}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4874459065bc383489f9f457ee902032
+      internalID: 1982862996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_49"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 11, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 14}
+        - {x: -16, y: 11}
+        - {x: -16, y: -1}
+        - {x: -14, y: -3}
+        - {x: -14, y: -11}
+        - {x: -11, y: -14}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 12, y: -14}
+        - {x: 14, y: -11}
+        - {x: 15, y: -2}
+        - {x: 16, y: 0}
+        - {x: 16, y: 12}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49666a2c2fa96304ca41fc4f37585665
+      internalID: 715437913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_50"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 11, y: 16}
+        - {x: -13, y: 16}
+        - {x: -15, y: 15}
+        - {x: -16, y: 12}
+        - {x: -16, y: 0}
+        - {x: -13, y: -4}
+        - {x: -9, y: -8}
+        - {x: -5, y: -11}
+        - {x: 2, y: -11}
+        - {x: 5, y: -10}
+        - {x: 14, y: -2}
+        - {x: 16, y: 1}
+        - {x: 16, y: 13}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e5ea6cb92655c46b3c4f9e4c816b91
+      internalID: -339416917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_51"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2f015b6bb4a82c41ae8f8e7d25b100b
+      internalID: -1213754209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_52"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d01b541a98945b4ab5dd4643e8d39f3
+      internalID: 2134460728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_53"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1886d61d262b6fb4c95c495266fc1179
+      internalID: -1673093035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_54"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2bde7b314632f54897eb0d98d2f8de5
+      internalID: -159275243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_55"
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156892ddd31371041a9cdeec29bc96bd
+      internalID: -848821089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_56"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3c0d0a970b45646aa49e6087e83ad2
+      internalID: 611303670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_57"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: 2}
+        - {x: -15, y: -2}
+        - {x: -16, y: -9}
+        - {x: -13, y: -13}
+        - {x: -12, y: -16}
+        - {x: -6, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      - - {x: -12, y: -16}
+        - {x: -12, y: -16}
+        - {x: -10, y: -16}
+        - {x: -8, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59402cd00ff95ec49bfdf305542a8587
+      internalID: 864167681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_58"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87809c8e12897564e96505baf9d6e8e5
+      internalID: -1678893920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_59"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 6, y: -16}
+        - {x: 14, y: -12}
+        - {x: 16, y: -9}
+        - {x: 15, y: -2}
+        - {x: 16, y: 2}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba41608e5f4afe428dc8209e6f30613
+      internalID: -2108989555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_60"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 16}
+        - {x: -14, y: 15}
+        - {x: -14, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: -9}
+        - {x: 14, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 942b0105b3d28c440ba7c8cd1b05e64b
+      internalID: -535253249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_61"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 9, y: 16}
+        - {x: -8, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -8}
+        - {x: -13, y: -11}
+        - {x: -6, y: -13}
+        - {x: -6, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -12}
+        - {x: 15, y: -9}
+        - {x: 16, y: -6}
+        - {x: 16, y: 10}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3f080c64bc737f4882d7d5ef50421cc
+      internalID: 1289539345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_62"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 11}
+        - {x: -16, y: 8}
+        - {x: -16, y: -12}
+        - {x: -15, y: -14}
+        - {x: -13, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 6}
+        - {x: 7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362f9d5303851924eaef6475853c61e2
+      internalID: 282260473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_63"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 11}
+        - {x: -16, y: 8}
+        - {x: -16, y: -12}
+        - {x: -15, y: -14}
+        - {x: -13, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 6}
+        - {x: 7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660604434e1e5064883f31429ed2a4de
+      internalID: 1689043371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_64"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 666d2909762b12040998102e646d6327
+      internalID: -1263778905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_65"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e90e0fb0bdc59648aca6ad9e7187074
+      internalID: -1388310898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_66"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e6b7819b23a7374985fd76de3074c12
+      internalID: -447131505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_67"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c79aa3e5f8dd2478cec589bc8b0828
+      internalID: 1826499468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_68"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3400617ec19df64fa6b535f057daf33
+      internalID: 928281323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_69"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 16}
+        - {x: -13, y: 8}
+        - {x: -13, y: -10}
+        - {x: -12, y: -16}
+        - {x: 11, y: -16}
+        - {x: 14, y: -9}
+        - {x: 14, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 361a6c4f19ef70a42bad8fa7bcfaa8e5
+      internalID: 440108407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_70"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: 16}
+        - {x: -11, y: 13}
+        - {x: -14, y: 10}
+        - {x: -14, y: 8}
+        - {x: -16, y: 4}
+        - {x: -14, y: -1}
+        - {x: -16, y: -7}
+        - {x: -15, y: -11}
+        - {x: -11, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7211f115cce456c47a8869d9d6399713
+      internalID: -980431343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_71"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fde20a0cbbc95e49b44c95f282b4c70
+      internalID: 271112722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_72"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 6, y: 14}
+        - {x: 4, y: 15}
+        - {x: 0, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 11.700272, y: -16}
+        - {x: 15, y: -14}
+        - {x: 16, y: -13}
+        - {x: 16, y: 2}
+        - {x: 14, y: 5}
+        - {x: 13, y: 9}
+      - - {x: 15, y: -14}
+        - {x: 15, y: -14}
+        - {x: 15, y: -14}
+        - {x: 15, y: -14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0036fe48fc35c7744a73a7e847ece630
+      internalID: -1257225585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_73"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a94e358b9a220148af695e98af581a5
+      internalID: -781613975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_74"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30dc6c1c5e963e04da49944aafc59fbb
+      internalID: 296806897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_75"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c9d807de583c434ca341f7d18a1b1b6
+      internalID: -39981257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_76"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 16}
+        - {x: -14, y: 13}
+        - {x: -16, y: 10}
+        - {x: -16, y: -9}
+        - {x: -15, y: -11}
+        - {x: -10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 936499ceb9a3b424da9ea495baf0723b
+      internalID: 1557016548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_77"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbded87b7536c6547890c7ec7bd6d6e1
+      internalID: 972756367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_78"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 9, y: -16}
+        - {x: 15, y: -11}
+        - {x: 16, y: -7}
+        - {x: 16, y: 12}
+        - {x: 14, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e5d3deb89c3ed45ab2cc8073294ca6
+      internalID: 243586001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_79"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: 16}
+        - {x: -11, y: 13}
+        - {x: -14, y: 10}
+        - {x: -14, y: 8}
+        - {x: -16, y: 4}
+        - {x: -14, y: -1}
+        - {x: -16, y: -7}
+        - {x: -15, y: -11}
+        - {x: -11, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: edbb1d0acafed1b4882e1aba2f1f53b1
+      internalID: 1116059024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_80"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 386b9401b54d160469d92f2ebe40bf0f
+      internalID: -1288969479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_81"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 6, y: 14}
+        - {x: 4, y: 15}
+        - {x: 0, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 11.700272, y: -16}
+        - {x: 15, y: -14}
+        - {x: 16, y: -13}
+        - {x: 16, y: 2}
+        - {x: 14, y: 5}
+        - {x: 13, y: 9}
+      - - {x: 15, y: -14}
+        - {x: 15, y: -14}
+        - {x: 15, y: -14}
+        - {x: 15, y: -14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: db56096aada15a74db9f6a6b2d9f0bb2
+      internalID: -691609408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_82"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b5eb26bd4c5b664ab799096ea0e219a
+      internalID: 457812774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_83"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95199a4470d54fa469733d31752ba551
+      internalID: -870907573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_84"
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a218eaaed3a6684f9ebaadcad785b47
+      internalID: -272694145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_85"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1a85e1a0d4de0e4584115a6acba1a91
+      internalID: -804122049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_86"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e6f9bbf05d59494b9db1926a124a87b
+      internalID: -290277377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_87"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0deb25b86406d4f4aa2e967bde4df091
+      internalID: -959052791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_88"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -10, y: 14}
+        - {x: -16, y: 6}
+        - {x: -16, y: -9}
+        - {x: -14, y: -14}
+        - {x: -10, y: -16}
+        - {x: 13, y: -16}
+        - {x: 15, y: -15}
+        - {x: 16, y: -13}
+        - {x: 16, y: 4}
+        - {x: 9, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681279d6e9414b94c887a4dc4a7b5a89
+      internalID: -268940728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_89"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 13, y: -13}
+        - {x: 12, y: -10}
+        - {x: 15, y: -4}
+        - {x: 14, y: 3}
+        - {x: 15, y: 13}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e95aa7caf02a3843806775fe48763c7
+      internalID: -1199775908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_90"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 15}
+        - {x: -14, y: 13}
+        - {x: -14, y: 5}
+        - {x: -14, y: -10}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0ec764bca4259844830de9b6dfd0b04
+      internalID: -1512624211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_91"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f9750b0f5583d4aa8de184071ea57e
+      internalID: 481964126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_92"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4073299b982d0e49ae2d568e47293b6
+      internalID: -1407196174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0442tileset_93"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61e09c867dcc9f24e83e25349beb4342
+      internalID: -389747258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "\u0442tileset_0": 579902100
+      "\u0442tileset_1": 694109713
+      "\u0442tileset_10": 1828209786
+      "\u0442tileset_11": -948251618
+      "\u0442tileset_12": 1131529892
+      "\u0442tileset_13": 607756655
+      "\u0442tileset_14": -460806510
+      "\u0442tileset_15": -1022306022
+      "\u0442tileset_16": 830025387
+      "\u0442tileset_17": -1826990050
+      "\u0442tileset_18": -705424002
+      "\u0442tileset_19": 566271915
+      "\u0442tileset_2": 706560437
+      "\u0442tileset_20": -2024949680
+      "\u0442tileset_21": -895271293
+      "\u0442tileset_22": 1378269228
+      "\u0442tileset_23": 316410117
+      "\u0442tileset_24": -1329966290
+      "\u0442tileset_25": -1487556215
+      "\u0442tileset_26": 1070010111
+      "\u0442tileset_27": -1026574930
+      "\u0442tileset_28": 636042620
+      "\u0442tileset_29": 1081541804
+      "\u0442tileset_3": -1673617988
+      "\u0442tileset_30": 435283461
+      "\u0442tileset_31": -2005733716
+      "\u0442tileset_32": -557114322
+      "\u0442tileset_33": -2089781656
+      "\u0442tileset_34": -1868098153
+      "\u0442tileset_35": 2066027709
+      "\u0442tileset_36": 1883667566
+      "\u0442tileset_37": 1276887710
+      "\u0442tileset_38": 2071154465
+      "\u0442tileset_39": 325999096
+      "\u0442tileset_4": -1868851479
+      "\u0442tileset_40": 877756600
+      "\u0442tileset_41": 2005841188
+      "\u0442tileset_42": 1562524565
+      "\u0442tileset_43": -2126311354
+      "\u0442tileset_44": 1744776805
+      "\u0442tileset_45": -1419138046
+      "\u0442tileset_46": 436658779
+      "\u0442tileset_47": -1898294404
+      "\u0442tileset_48": 1982862996
+      "\u0442tileset_49": 715437913
+      "\u0442tileset_5": 1473132139
+      "\u0442tileset_50": -339416917
+      "\u0442tileset_51": -1213754209
+      "\u0442tileset_52": 2134460728
+      "\u0442tileset_53": -1673093035
+      "\u0442tileset_54": -159275243
+      "\u0442tileset_55": -848821089
+      "\u0442tileset_56": 611303670
+      "\u0442tileset_57": 864167681
+      "\u0442tileset_58": -1678893920
+      "\u0442tileset_59": -2108989555
+      "\u0442tileset_6": 1755189421
+      "\u0442tileset_60": -535253249
+      "\u0442tileset_61": 1289539345
+      "\u0442tileset_62": 282260473
+      "\u0442tileset_63": 1689043371
+      "\u0442tileset_64": -1263778905
+      "\u0442tileset_65": -1388310898
+      "\u0442tileset_66": -447131505
+      "\u0442tileset_67": 1826499468
+      "\u0442tileset_68": 928281323
+      "\u0442tileset_69": 440108407
+      "\u0442tileset_7": -2128410102
+      "\u0442tileset_70": -980431343
+      "\u0442tileset_71": 271112722
+      "\u0442tileset_72": -1257225585
+      "\u0442tileset_73": -781613975
+      "\u0442tileset_74": 296806897
+      "\u0442tileset_75": -39981257
+      "\u0442tileset_76": 1557016548
+      "\u0442tileset_77": 972756367
+      "\u0442tileset_78": 243586001
+      "\u0442tileset_79": 1116059024
+      "\u0442tileset_8": -2051039105
+      "\u0442tileset_80": -1288969479
+      "\u0442tileset_81": -691609408
+      "\u0442tileset_82": 457812774
+      "\u0442tileset_83": -870907573
+      "\u0442tileset_84": -272694145
+      "\u0442tileset_85": -804122049
+      "\u0442tileset_86": -290277377
+      "\u0442tileset_87": -959052791
+      "\u0442tileset_88": -268940728
+      "\u0442tileset_89": -1199775908
+      "\u0442tileset_9": 1026081810
+      "\u0442tileset_90": -1512624211
+      "\u0442tileset_91": 481964126
+      "\u0442tileset_92": -1407196174
+      "\u0442tileset_93": -389747258
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
